@@ -1,0 +1,56 @@
+site_name: MDSPACE Practical Session - CryoNET 2026
+site_description: Workshop material and step-by-step instructions for the MDSPACE practical session at CryoNET 2026.
+site_author: Benjamin Gallois
+site_url: https://https://mdspace-toolkit.github.io/cryonet-2026-mdspace-practical/
+
+repo_name: https://mdspace-toolkit/cryonet-2026-mdspace-practical
+repo_url: https://github.com/MDSPACE-toolkit/cryonet-2026-mdspace-practical
+
+theme:
+  name: material
+  language: en
+
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: cyan
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+
+    - scheme: slate
+      primary: indigo
+      accent: cyan
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+
+  font:
+    text: Roboto
+    code: Roboto Mono
+
+  icon:
+    logo: material/microscope
+
+  features:
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - navigation.footer
+    - toc.follow
+    - search.suggest
+    - search.highlight
+    - content.code.copy
+    - content.tabs.link
+
+markdown_extensions:
+  - admonition
+  - tables
+  - attr_list
+  - md_in_html
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
