@@ -1,0 +1,1 @@
+{"config":{"lang":["en"],"separator":"[\\s\\-]+","pipeline":["stopWordFilter"],"fields":{"title":{"boost":1000.0},"text":{"boost":1.0},"tags":{"boost":1000000.0}}},"docs":[{"location":"","title":"MDSPACE practical session - CryoNET 2026","text":"<p>This website contains the material for the MDSPACE practical session at the CryoNET Advanced Image Processing Workshop 2026.</p>"}]}
