@@ -4,6 +4,8 @@ In this section, we will run the complete MDSPACE workflow using the synthetic d
 
 The goal is to start from another structure, the 6RAH conformation, which differs from the 6RAF conformation used to generate the dataset, and to test whether MDSPACE can recover structural deformations using molecular dynamics simulation and information from the cryo-EM image.
 
+<video width="800" height="600" controls>   <source src="../assets/run.webm" type="video/webm"> </video>
+
 ## Principle of MDSPACE
 
 MDSPACE, for Molecular Dynamics simulation for Single Particle Analysis of Continuous Conformational hEterogeneity, is an iterative method designed to extract continuous conformational landscapes from cryo-EM single-particle images.
