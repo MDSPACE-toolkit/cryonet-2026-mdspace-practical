@@ -35,6 +35,8 @@ Before starting, participants should be comfortable with:
 - Navigating files, folders, and a graphical scientific software interface.
 - Basic Python programming.
 
+---
+
 ## Software and data
 
 The practical will use the following material:

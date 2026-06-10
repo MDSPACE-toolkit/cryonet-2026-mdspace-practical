@@ -36,7 +36,6 @@ CTF simulation
   ↓
 
 Synthetic cryo-EM dataset
-
 ```
 
 ---
@@ -63,6 +62,15 @@ The deformations will be generated using normal mode analysis (NMA). Normal mode
 
 This allows the synthetic dataset to include not only different viewing directions, but also structural variability.
 
+<figure>
+  <video width="800" height="600" controls>
+    <source src="../assets/modes.webm" type="video/webm">
+  </video>
+
+<figcaption>
+    6RAF mode 7 and 8.
+  </figcaption>
+</figure>
 ---
 
 ## Projection using a Gaussian representation
@@ -106,13 +114,13 @@ Select 6RAF.pdb as the input PDB file.
 In order to optimize processing time for this practical while still producing meaningful results, we suggest this set of parameters:
 
 - Image number: 200.
-- Sampling: 1.8 Å/pixel.
+- Sampling: 2 Å/pixel.
 - Size: 128 pixels.
-- Resize: 0.5.
-- Snr: 0.2.
+- Resize: 1.
+- Snr: 0.1.
 - Modes: 7, 8.
 
-These values are chosen to balance computational efficiency with scientific value. A moderate number of images keeps processing time short but provides enough data for analysis. We create a square image of 128 pixels by 128 pixels, sampling at 1.8 Å/pixel with a target signal-to-noise ratio of 0.2 using the first 2 non-trivial normal modes for deformation, and then we resize the image by half to speed processing later. Note that by resizing the image, we now have a pixel size of 3.6 Å/pixel.
+These values are chosen to balance computational efficiency with scientific value. A moderate number of images keeps processing time short but provides enough data for analysis. We create a square image of 128 pixels by 128 pixels, sampling at 2 Å/pixel with a target signal-to-noise ratio of 0.1 using the first 2 non-trivial normal modes for deformation.
 
 The user can experiment by setting the other parameters as they see fit. The documentation for each parameter is accessible by hovering over the input widgets.
 
