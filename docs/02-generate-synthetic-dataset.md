@@ -48,12 +48,6 @@ The PDB file contains the atomic coordinates of the target 6RAF conformation. Th
 
 ---
 
-## Rotations and translations
-
-In single-particle cryo-EM, each particle image corresponds to a molecule observed from a particular orientation. To reproduce this, the target structure is randomly rotated before projection. Small translations are also applied to simulate imperfect particle centering.
-
----
-
 ## Conformational deformation
 
 The target structure is also deformed before projection.
@@ -71,6 +65,13 @@ This allows the synthetic dataset to include not only different viewing directio
     6RAF mode 7 and 8.
   </figcaption>
 </figure>
+
+---
+
+## Rotations and translations
+
+In single-particle cryo-EM, each particle image corresponds to a molecule observed from a particular orientation. To reproduce this, the target structure is randomly rotated before projection. Small translations are also applied to simulate imperfect particle centering.
+
 ---
 
 ## Projection using a Gaussian representation
@@ -81,6 +82,23 @@ In practice, atoms can be represented using Gaussian functions. The projected im
 
 This produces a 2D projection of the molecule.
 
+<figure>
+  <video width="800" height="600" controls>
+    <source src="../assets/3D.webm" type="video/webm">
+  </video>
+
+<figcaption>
+    3D reconstruction using Gaussian functions.
+  </figcaption>
+</figure>
+
+<figure>
+  <img src=../assets/projection.png>
+
+<figcaption>
+    Projection of the 3D reconstruction.
+  </figcaption>
+</figure>
 ---
 
 ## CTF simulation
