@@ -5,7 +5,7 @@ In this section, we will run the complete MDSPACE workflow using the synthetic d
 The goal is to start from another structure, the 6RAH conformation, which differs from the 6RAF conformation used to generate the dataset, and to test whether MDSPACE can recover structural deformations using molecular dynamics simulation and information from the cryo-EM image.
 
 <figure>
- <video width="800" height="600" controls autoplay muted>   <source src="../assets/run.webm" type="video/webm"> </video>
+ <video width="800" height="600" controls autoplay muted loop>   <source src="../assets/run.webm" type="video/webm"> </video>
 <figcaption>
     Fig 6. Complete analysis workflow using MDSPACE desktop.
 </figcaption>
@@ -155,10 +155,10 @@ We use four MDSPACE iterations. The first iteration uses standard MD-based 3D-to
 After the first iteration, MDSPACE analyzes the ensemble of fitted structures using principal component analysis. The following iterations use PCA-based refinement with 3 components. In these iterations, the principal component vectors from the previous ensemble are used to guide MD-based flexible fitting in the next iteration that will use NMMD. For that, select the MD THEN NMMD option. The full list of parameters can mostly be left at their defaults except:
 
 - Iteration: 4.
-- Number of Steps: 30 000.
-- Time Step: 0.001 ps.
+- Number of Steps: 10 000.
+- Time Step: 0.003 ps.
 - Simulation Type: MD_THEN_NMMD.
-- Restaint Constant K: 4 000 kcal/mol.
+- Restaint Constant K: 3 000 kcal/mol.
 
 This iterative process incorporates ensemble conformational information into the MD simulation, making the 3D-to-2D fitting of individual particle images more robust to noise and to views where conformational changes are less detectable or ambiguous in the projection plane.
 

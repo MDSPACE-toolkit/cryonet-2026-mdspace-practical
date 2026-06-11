@@ -41,8 +41,8 @@ You should be able to locate this folder alongside the MDSPACE bundle.
 | Resource          | Purpose                                                                                                                     |
 | ----------------- | --------------------------------------------------------------------------------------------------------------------------- |
 | Data              | The structure used to generate the synthetic cryo-EM-like dataset and the structure used to initialize the MDSPACE workflow |
-| Reference Dataset | Precomputed dataset                                                                                                         |
-| Reference outputs | Precomputed results used for comparison and fallback                                                                        |
+| Reference dataset | Precomputed dataset of 500 images                                                                                           |
+| Reference outputs | Precomputed results used for comparison and fallback (optimized parameters)                                                 |
 
 ---
 
@@ -50,7 +50,7 @@ You should be able to locate this folder alongside the MDSPACE bundle.
 
 Reference outputs are provided so that all participants can continue the practical even if a live run fails or takes longer than expected.
 
-The reference material includes:
+The reference material can be dowloaded [here](https://gallois.cc/assets/cryonet/archive.tar.gz) and includes:
 
 - A precomputed synthetic dataset.
 - A completed MDSPACE analysis.

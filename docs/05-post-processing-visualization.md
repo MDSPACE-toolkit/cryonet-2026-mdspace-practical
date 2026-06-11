@@ -11,7 +11,7 @@ The goal is to check whether the conformations recovered by MDSPACE progressivel
 ## Quick inspection in MDSPACE
 
 </figure>
-<video width="800" height="600" controls>
+<video width="800" height="600" controls muted loop autoplay>
  <source src="../assets/mdspace_inspect.webm" type="video/webm">
 </video>
 <figcaption>
