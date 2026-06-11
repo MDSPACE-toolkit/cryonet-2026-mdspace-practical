@@ -57,12 +57,12 @@ The deformations will be generated using normal mode analysis (NMA). Normal mode
 This allows the synthetic dataset to include not only different viewing directions, but also structural variability.
 
 <figure>
-  <video width="800" height="600" controls>
+  <video width="800" height="600" controls autoplay loop muted playsinline>
     <source src="../assets/modes.webm" type="video/webm">
   </video>
 
 <figcaption>
-    6RAF mode 7 and 8.
+    Fig 1. 6RAF mode 7 and 8.
   </figcaption>
 </figure>
 
@@ -80,25 +80,24 @@ To generate a 2D image from the atomic structure, the molecule is projected onto
 
 In practice, atoms can be represented using Gaussian functions. The projected image is then obtained by accumulating the contribution of these Gaussian densities along the projection direction.
 
-This produces a 2D projection of the molecule.
-
 <figure>
-  <video width="800" height="600" controls>
+  <video width="800" height="600" controls autoplay loop muted playsinline>
     <source src="../assets/3D.webm" type="video/webm">
   </video>
 
 <figcaption>
-    3D reconstruction using Gaussian functions.
+    Fig 2. 3D reconstruction using Gaussian functions.
   </figcaption>
 </figure>
 
 <figure>
-  <img src=../assets/projection.png>
+  <img width="400" height="300" src=../assets/projection.png>
 
 <figcaption>
-    Projection of the 3D reconstruction.
+    Fig3. Projection of the 3D reconstruction.
   </figcaption>
 </figure>
+
 ---
 
 ## CTF simulation
@@ -115,32 +114,32 @@ The final synthetic dataset, therefore, contains images closer to realistic cryo
 
 ## Generate the dataset in MDSPACE desktop
 
-<video width="800" height="600" controls>
-
+<figure>
+<video width="800" height="600" controls loop autoplay muted>
  <source src="../assets/generation.webm" type="video/webm">
-
 </video>
+<figcaption>
+    Fig 4. Dataset generation using MDSPACE desktop.
+  </figcaption>
+</figure>
 
-Download the input [6RAF.pdb](https://files.rcsb.org/download/6RAF.pdb) file.
-
-Open the dataset-generation module in MDSPACE using File > Tools > Data Generator. A new data generator window is created in the interface.
-
-In the Parameter dock, specify a data folder (e.g., ‘generated_dataset’) as the output directory where the generated dataset will be stored.
-
-Select 6RAF.pdb as the input PDB file.
-
-In order to optimize processing time for this practical while still producing meaningful results, we suggest this set of parameters:
-
-- Image number: 200.
-- Sampling: 2 Å/pixel.
-- Size: 128 pixels.
-- Resize: 1.
-- Snr: 0.1.
-- Modes: 7, 8.
+1. Download the input [6RAF.pdb](https://files.rcsb.org/download/6RAF.pdb) file.
+2. Open the dataset-generation module in MDSPACE using File > Tools > Data Generator. A new data generator window is created in the interface.
+3. In the Parameter dock, specify a data folder (e.g., ‘generated_dataset’) as the output directory where the generated dataset will be stored.
+4. Select 6RAF.pdb as the input PDB file.
+5. In order to optimize processing time for this practical while still producing meaningful results, we suggest this set of parameters:
+     - Image number: 200.
+     - Sampling: 2 Å/pixel.
+     - Size: 128 pixels.
+     - Resize: 1.
+     - Snr: 0.1.
+     - Modes: 7, 8.
 
 These values are chosen to balance computational efficiency with scientific value. A moderate number of images keeps processing time short but provides enough data for analysis. We create a square image of 128 pixels by 128 pixels, sampling at 2 Å/pixel with a target signal-to-noise ratio of 0.1 using the first 2 non-trivial normal modes for deformation.
 
 The user can experiment by setting the other parameters as they see fit. The documentation for each parameter is accessible by hovering over the input widgets.
+
+
 
 Then start the dataset generation by clicking Start Step.
 
