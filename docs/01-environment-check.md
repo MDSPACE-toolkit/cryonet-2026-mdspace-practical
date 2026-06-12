@@ -4,7 +4,7 @@ The goal of this first step is to ensure everyone can access the workshop enviro
 
 At the end of this section, you should have:
 
-- MDSPACE desktop opens and ready to use.
+- MDSPACE desktop open and ready to use.
 - Access to the workshop data folder.
 - Access to the reference outputs, in case they are needed later.
 
@@ -50,7 +50,7 @@ You should be able to locate this folder alongside the MDSPACE bundle.
 
 Reference outputs are provided so that all participants can continue the practical even if a live run fails or takes longer than expected.
 
-The reference material can be dowloaded [here](https://gallois.cc/assets/cryonet/archive.tar.gz) and includes:
+The reference material can be downloaded [here](https://gallois.cc/assets/cryonet/archive.tar.gz) and includes:
 
 - A precomputed synthetic dataset.
 - A completed MDSPACE analysis.

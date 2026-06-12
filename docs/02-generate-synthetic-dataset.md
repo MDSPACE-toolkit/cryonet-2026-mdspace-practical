@@ -4,7 +4,7 @@
 
 In this section, we will generate a synthetic cryo-EM dataset from the target 6RAF conformation. This dataset (not the 6RAH conformation) will later serve as input to the MDSPACE workflow.
 
-The generated dataset creates a controlled experiment: we know which structure generated the images and have all the ground-truth information.
+The generated dataset creates a controlled experiment: we know which structures generated the images and have all the ground-truth information.
 
 ---
 
@@ -62,7 +62,7 @@ This allows the synthetic dataset to include not only different viewing directio
   </video>
 
 <figcaption>
-    Fig 1. 6RAF mode 7 and 8.
+    Fig 1. Structural displacements associated with modes 7 and 8 of 6RAF.
   </figcaption>
 </figure>
 
@@ -86,7 +86,7 @@ In practice, atoms can be represented using Gaussian functions. The projected im
   </video>
 
 <figcaption>
-    Fig 2. 3D reconstruction using Gaussian functions.
+    Fig 2. Three-dimensional density generated using Gaussian atomic representations.
   </figcaption>
 </figure>
 
@@ -94,7 +94,7 @@ In practice, atoms can be represented using Gaussian functions. The projected im
   <img width="400" height="300" src=../assets/projection.png>
 
 <figcaption>
-    Fig3. Projection of the 3D reconstruction.
+    Fig3. Two-dimensional projection of the generated density.
   </figcaption>
 </figure>
 
@@ -124,7 +124,7 @@ The final synthetic dataset, therefore, contains images closer to realistic cryo
 </figure>
 
 1. Download the input [6RAF.pdb](https://files.rcsb.org/download/6RAF.pdb) file.
-2. Open the dataset-generation module in MDSPACE using File > Tools > Data Generator. A new data generator window is created in the interface.
+2. Open the data generation module in MDSPACE using Tools > Data Generator. A new data generator window is created in the interface.
 3. In the Parameter dock, specify a data folder (e.g., ‘generated_dataset’) as the output directory where the generated dataset will be stored.
 4. Select 6RAF.pdb as the input PDB file.
 5. In order to optimize processing time for this practical while still producing meaningful results, we suggest this set of parameters:

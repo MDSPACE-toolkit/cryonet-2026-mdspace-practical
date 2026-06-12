@@ -11,9 +11,9 @@ These results show that the iterative MDSPACE procedure can recover part of the 
 
 This practical also illustrates an important point about flexible fitting methods: the results depend on both the image signal and the simulation parameters. Parameters such as force constant, simulation length, number of iterations, image size, and noise level can influence the strength and stability of the recovery. In practice, these parameters were adjusted to balance computation time and recovery quality, but better results can be achieved with more refined parameter settings.
 
-Current implementation status
+## Current implementation status
 
-This practical uses the current standalone C++ implementation of MDSPACE. The new implementation started in October 2025 with the goal of making the MDSPACE workflow easier to run outside the original Scipion/ContinuousFlex environment.
+This practical uses the current standalone C++ implementation of MDSPACE. Development of the new standalone implementation began in October 2025 with the goal of making the MDSPACE workflow easier to run outside the original Scipion/ContinuousFlex environment.
 
 The current version already supports the main steps required for this practical:
 
@@ -23,4 +23,4 @@ The current version already supports the main steps required for this practical:
 * Storage of recovered structures and metadata in HDF5 archives.
 * A companion post-processing Python library.
 
-The implementation is still under active development. The implementation should be stabilized and prepared for public release in 2026. Future improvements will focus on robustness, reduced computation time, and an easier-to-use workflow for larger or more realistic datasets.
+The implementation remains under active development and is being stabilized in preparation for public release in 2026. Future improvements will focus on robustness, reduced computation time, and an easier-to-use workflow for larger or more realistic datasets.

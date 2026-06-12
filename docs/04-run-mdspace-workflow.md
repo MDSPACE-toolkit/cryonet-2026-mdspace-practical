@@ -30,7 +30,7 @@ MDSPACE also refines the initial rigid-body alignment of the particles over the 
 
 </figure>
 
-The complete workflow contains seven main steps, six preparation steps before running the MDSPACE method:
+The complete workflow contains seven main steps: six preparation steps followed by the MDSPACE analysis.
 
 1. Import the starting structure and image dataset.
 2. Reconstruct a 3D volume from the particles.
@@ -44,17 +44,17 @@ The complete workflow contains seven main steps, six preparation steps before ru
 
 ## 0. Create a new workflow
 
-To start a new workflow, use Files < New. Workflow can be reloaded using Files < Load.
+To start a new workflow, use File < New. Workflow can be reloaded using File < Load.
 
 ## 1. Import the PDB and XMD files
 
 ### Goal
 
-The PDB file provides the molecular structure that will be used as the starting model. The XMD file describes the synthetic cryo-EM particle dataset. It contains the information needed to locate the particle images and read the associated metadata shift and orientation.
+The PDB file provides the molecular structure that will be used as the starting model. The XMD file describes the synthetic cryo-EM particle dataset. It contains the information needed to locate the particle images and read the associated shift and orientation metadata.
 
 ### In this practical
 
-We use the `6RAH.pdb` starting conformation as input, and the generated `stack/particles.xmd` file from the synthetic dataset as the image input.
+We use the `6RAH.pdb` starting conformation as input, and the generated `data_stack/particles.xmd` file from the synthetic dataset as the image input.
 
 After creating a new workflow window, import the PDB and XMD files. Check that both inputs are correctly listed in the project and that the particle dataset can be previewed. A successful load should unlock the next step tab in the workflow window.
 
@@ -158,7 +158,7 @@ After the first iteration, MDSPACE analyzes the ensemble of fitted structures us
 - Number of Steps: 10 000.
 - Time Step: 0.003 ps.
 - Simulation Type: MD_THEN_NMMD.
-- Restaint Constant K: 3 000 kcal/mol.
+- Restraint Constant K: 3 000 kcal/mol.
 
 This iterative process incorporates ensemble conformational information into the MD simulation, making the 3D-to-2D fitting of individual particle images more robust to noise and to views where conformational changes are less detectable or ambiguous in the projection plane.
 

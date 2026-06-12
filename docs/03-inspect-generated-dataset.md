@@ -6,9 +6,9 @@ In this section, we will inspect the synthetic dataset generated from the 6RAF c
 
 At the end of this section, you should understand:
 
-- What files were produced during dataset generation?
-- How to inspect the generated particle images?
-- What information is stored in the dataset folder?
+- Which files are produced during dataset generation.
+- How to inspect the generated particle images.
+- What information is stored in the dataset directory.
 
 ---
 
@@ -25,7 +25,7 @@ At the end of this section, you should understand:
 In MDSPACE desktop, the dataset will open automatically once generation is complete. To reopen a dataset later, you have two options:
 
 - Drag and drop the entire dataset folder into the MDSPACE main window.
-- Alternatively, open the datagenerator tool from the main menu (under Tools > Dataset Generator), then click ‘Open Folder’ and navigate to your dataset folder or `generator_params.txt` file.
+- Alternatively, open the data generator tool from the main menu (under Tools > Data Generator), then click ‘Open Folder’ and navigate to your dataset folder or `generator_params.txt` file.
 
 After loading the dataset, you should be able to inspect the generated particle images in the viewer, displaying them image by image with overlaid metadata, and also plot the distribution of the dataset metadata.
 
@@ -37,19 +37,19 @@ After dataset generation, the output directory should contain several files and 
 
 A typical generated folder may look like this:
 
-| File or folder       | Meaning                                                                                 |
-| -------------------- | --------------------------------------------------------------------------------------- |
-| reference_centered.pdb         | The reference structure center-of-mass centered                                         |
-| generator_params.txt | Parameters used for dataset generation                                                  |
-| ctf.param            | CTF parameters used for microscope simulation                                           |
-| generate_data.log    | Main generation log                                                                     |
-| nma.log              | Normal mode analysis log                                                                |
-| eigenvalues.txt      | Eigenvalues associated with the computed normal modes                                   |
-| modes/               | Normal mode vectors used for deformation                                                |
-| pdbs/                | Deformed PDB structures generated for individual particles (but not shifted or rotated) |
-| data_spi/            | Individual SPIDER images and associated metadata                                        |
-| data_stack/          | Final MRCS image stack and metadata                                                     |
-| generated_data.h5    | The coordinate-level ground truth                                                       |
+| File or folder        | Meaning                                                                                 |
+| --------------------- | --------------------------------------------------------------------------------------- |
+| reference_centered.pdb| The reference structure translated so that its center of mass is at the origin.         |                               |
+| generator_params.txt  | Parameters used for dataset generation                                                  |
+| ctf.param             | CTF parameters used for microscope simulation                                           |
+| generate_data.log     | Main generation log                                                                     |
+| nma.log               | Normal mode analysis log                                                                |
+| eigenvalues.txt       | Eigenvalues associated with the computed normal modes                                   |
+| modes/                | Normal mode vectors used for deformation                                                |
+| pdbs/                 | Deformed PDB structures generated for individual particles (but not shifted or rotated) |
+| data_spi/             | Individual SPIDER images and associated metadata                                        |
+| data_stack/           | Final MRCS image stack and metadata                                                     |
+| generated_data.h5     | The coordinate-level ground truth                                                       |
 
 ---
 
@@ -87,8 +87,8 @@ It is organized as follows:
 | /frames/raw             | Generated molecular coordinates (Å) before projection rotation and shift. If deformation was enabled, these coordinates include the deformation. |
 | /frames/rotated         | Same coordinates (Å) after applying the projection rotation and shift used to generate the particle image.                                       |
 | /transforms/euler       | Euler angles (°) and image shifts (pixels) associated with each generated particle.                                                              |
-| /transforms/composed    | Transform matrix associated with the projection pose (° and pixels).                                                                             |
-| /metadata/reference_pdb | Reference PDB stored in the archive as a string.                                                                                                             |
+| /transforms/composed    | Transform matrix associated with the projection pose (translatin in pixels).                                                                     |
+| /metadata/reference_pdb | Reference PDB stored in the archive as a string.                                                                                                 |
 | /metadata/pixel_size    | Final pixel size of the generated images, in Å/pixel.                                                                                            |
 
 Coordinate frames are stored in Å. Image shifts in the transform metadata are stored in pixels. The stored pixel size gives the conversion between pixel shifts and physical shifts.

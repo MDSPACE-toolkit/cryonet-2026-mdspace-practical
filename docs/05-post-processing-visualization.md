@@ -2,7 +2,7 @@
 
 In this section, we will inspect the results produced by the MDSPACE workflow and compare them with the known structures from the synthetic experiment.
 
-We will start with a quick inspection inside the MDSPACE desktop, then move to a Python analysis using the `mdspace-analysis` library. The Python part will allow us to load the generated conformations and the structures produced at each MDSPACE iteration, with more flexibility than in MDSPACE desktop. The `mdspace-analysis` is kept in synch with the MDSPACE C++ library and MDSPACE desktop and should be installed and used using the same major version used to produce the data.
+We will start with a quick inspection inside the MDSPACE desktop, then move to a Python analysis using the `mdspace-analysis` library. The Python part will allow us to load the generated conformations and the structures produced at each MDSPACE iteration, with more flexibility than in MDSPACE desktop. `mdspace-analysis` is kept in synch with the MDSPACE C++ library and MDSPACE desktop and should be installed and used using the same major version used to produce the data.
 
 The goal is to check whether the conformations recovered by MDSPACE progressively move toward the synthetic conformational space used to generate the particle images.
 
@@ -325,7 +325,7 @@ In this dataset, the generated archive is guaranteed to contain all synthetic fr
 
 The MDSPACE archives may contain only a subset of recovered structures. Therefore, for each MDSPACE archive, we use `frame_by_image_index()` to map `image index -> MDSPACE frame index`.
 
-Then we only compare recovered structures whose image indices are present in the in both archives.
+Then we only compare recovered structures whose image indices are present in both archives.
 
 ```python
 rmsd_by_iteration = []
@@ -345,7 +345,6 @@ with MdspaceHdf5(generated_h5) as generated_archive:
             print(
                 f"Iteration {iteration}: "
                 f"{len(common_images)} matched images"
-
             )
 
             for image in common_images:
@@ -407,7 +406,7 @@ plt.show()
 
 ## Interpretation of the results
 
-The PCA projection in Figure 8 shows the evolution of the structures recovered by MDSPACE across iterations. The PCA space is computed using only the generated ground-truth conformations.
+The PCA projection in Figure 8 shows the evolution of the structures recovered by MDSPACE across iterations. The PCA space is computed using only the generated ground-truth conformations together with the initial 6RAH structure. The structures recovered at each MDSPACE iteration are then projected into this common PCA space.
 
 <figure>
  <img width="800" height="600" src="../assets/pca.svg">
@@ -416,7 +415,7 @@ The PCA projection in Figure 8 shows the evolution of the structures recovered b
 </figcaption>
 </figure>
 
-At iteration 0, the MDSPACE structures are still widely distributed, indicating that the first-fitted ensemble contains substantial structural variability relative to the generated ground-truth trajectory. In the subsequent iteration, the MDSPACE cloud progressively moves closer to the generated conformational region and becomes more compact. This indicates that the iterative fitting procedure reduces the discrepancy between the starting model and the synthetic dataset.
+At iteration 0, the MDSPACE structures are still widely distributed, indicating that the ensemble recovered during the first iteration contains substantial structural variability relative to the generated ground-truth trajectory. Across subsequent iterations, the MDSPACE cloud progressively moves closer to the generated conformational region and becomes more compact. This indicates that the iterative fitting procedure reduces the discrepancy between the starting model and the synthetic dataset.
 
 To quantify this trend, we computed the RMSD between each MDSPACE-recovered structure and its corresponding ground-truth conformation as shown in Figure 9.
 
