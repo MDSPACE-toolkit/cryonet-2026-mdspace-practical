@@ -2,7 +2,7 @@
 
 ## Goal
 
-In this section, we will inspect the synthetic dataset generated from the 6RAF conformation.
+In this section, we will inspect the synthetic dataset generated from the `6RAF` conformation.
 
 At the end of this section, you should understand:
 
@@ -18,11 +18,11 @@ At the end of this section, you should understand:
 <video width="800" height="600" controls loop muted autoplay>   <source src="../assets/data_inspect.webm" type="video/webm"> </video>
 
 <figcaption>
-    Fig 5. Dataset inspection using MDSPACE desktop.
+    Fig 5. Dataset inspection using MDSPACE Desktop.
 </figcaption>
 
 </figure>
-In MDSPACE desktop, the dataset will open automatically once generation is complete. To reopen a dataset later, you have two options:
+In MDSPACE Desktop, the dataset will open automatically once generation is complete. To reopen a dataset later, you have two options:
 
 - Drag and drop the entire dataset folder into the MDSPACE main window.
 - Alternatively, open the data generator tool from the main menu (under Tools > Data Generator), then click ‘Open Folder’ and navigate to your dataset folder or `generator_params.txt` file.

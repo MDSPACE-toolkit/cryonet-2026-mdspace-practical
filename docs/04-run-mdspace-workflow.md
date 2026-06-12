@@ -2,12 +2,12 @@
 
 In this section, we will run the complete MDSPACE workflow using the synthetic dataset generated in the previous steps.
 
-The goal is to start from another structure, the 6RAH conformation, which differs from the 6RAF conformation used to generate the dataset, and to test whether MDSPACE can recover structural deformations using molecular dynamics simulation and information from the cryo-EM image.
+The goal is to start from another structure, the `6RAH` conformation, which differs from the `6RAF` conformation used to generate the dataset, and to test whether MDSPACE can recover structural deformations using molecular dynamics simulation and information from the cryo-EM image.
 
 <figure>
  <video width="800" height="600" controls autoplay muted loop>   <source src="../assets/run.webm" type="video/webm"> </video>
 <figcaption>
-    Fig 6. Complete analysis workflow using MDSPACE desktop.
+    Fig 6. Complete analysis workflow using MDSPACE Desktop.
 </figcaption>
 
 </figure>
@@ -132,7 +132,7 @@ This step prepares a stable molecular system for the later simulation.
 
 ### In this practical
 
-We minimize the registered C-alpha 6RAH structure. After minimization, the structure should remain close to the registered input model while improving its local geometry.
+We minimize the registered C-alpha `6RAH` structure. After minimization, the structure should remain close to the registered input model while improving its local geometry.
 
 A small structural adjustment is expected. A large, unexpected displacement may indicate a problem with the input structure, topology, or minimization settings.
 
@@ -148,7 +148,7 @@ The result is an ensemble of fitted structures, one per particle image, together
 
 ### In this practical
 
-We run MDSPACE starting from the registered and minimized 6RAH C-alpha structure.
+We run MDSPACE starting from the registered and minimized `6RAH` C-alpha structure.
 
 We use four MDSPACE iterations. The first iteration uses standard MD-based 3D-to-2D flexible fitting **without normal modes. This avoids injecting the normal-mode information that was used to generate the synthetic dataset directly into the recovery process**.
 

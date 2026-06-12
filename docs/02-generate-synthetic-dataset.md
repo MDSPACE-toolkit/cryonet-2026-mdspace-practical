@@ -2,7 +2,7 @@
 
 ## Goal
 
-In this section, we will generate a synthetic cryo-EM dataset from the target 6RAF conformation. This dataset (not the 6RAH conformation) will later serve as input to the MDSPACE workflow.
+In this section, we will generate a synthetic cryo-EM dataset from the target `6RAF` conformation. This dataset (not the `6RAH` conformation) will later serve as input to the MDSPACE workflow.
 
 The generated dataset creates a controlled experiment: we know which structures generated the images and have all the ground-truth information.
 
@@ -44,7 +44,7 @@ Synthetic cryo-EM dataset
 
 The starting point for dataset generation is a molecular structure in PDB format.
 
-The PDB file contains the atomic coordinates of the target 6RAF conformation. These coordinates define the three-dimensional molecular model from which the synthetic dataset will be generated.
+The PDB file contains the atomic coordinates of the target `6RAF` conformation. These coordinates define the three-dimensional molecular model from which the synthetic dataset will be generated.
 
 ---
 
@@ -62,7 +62,7 @@ This allows the synthetic dataset to include not only different viewing directio
   </video>
 
 <figcaption>
-    Fig 1. Structural displacements associated with modes 7 and 8 of 6RAF.
+    Fig 1. Structural displacements associated with modes 7 and 8 of `6RAF`.
   </figcaption>
 </figure>
 
@@ -112,21 +112,21 @@ The final synthetic dataset, therefore, contains images closer to realistic cryo
 
 ---
 
-## Generate the dataset in MDSPACE desktop
+## Generate the dataset in MDSPACE Desktop
 
 <figure>
 <video width="800" height="600" controls loop autoplay muted>
  <source src="../assets/generation.webm" type="video/webm">
 </video>
 <figcaption>
-    Fig 4. Dataset generation using MDSPACE desktop.
+    Fig 4. Dataset generation using MDSPACE Desktop.
   </figcaption>
 </figure>
 
-1. Download the input [6RAF.pdb](https://files.rcsb.org/download/6RAF.pdb) file.
+1. Download the input [`6RAF`.pdb](https://files.rcsb.org/download/`6RAF`.pdb) file.
 2. Open the data generation module in MDSPACE using Tools > Data Generator. A new data generator window is created in the interface.
 3. In the Parameter dock, specify a data folder (e.g., ‘generated_dataset’) as the output directory where the generated dataset will be stored.
-4. Select 6RAF.pdb as the input PDB file.
+4. Select `6RAF`.pdb as the input PDB file.
 5. In order to optimize processing time for this practical while still producing meaningful results, we suggest this set of parameters:
      - Image number: 200.
      - Sampling: 2 Å/pixel.

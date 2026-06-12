@@ -2,7 +2,7 @@
 
 In this section, we will inspect the results produced by the MDSPACE workflow and compare them with the known structures from the synthetic experiment.
 
-We will start with a quick inspection inside the MDSPACE desktop, then move to a Python analysis using the `mdspace-analysis` library. The Python part will allow us to load the generated conformations and the structures produced at each MDSPACE iteration, with more flexibility than in MDSPACE desktop. `mdspace-analysis` is kept in synch with the MDSPACE C++ library and MDSPACE desktop and should be installed and used using the same major version used to produce the data.
+We will start with a quick inspection inside the MDSPACE Desktop, then move to a Python analysis using the `mdspace-analysis` library. The Python part will allow us to load the generated conformations and the structures produced at each MDSPACE iteration, with more flexibility than in MDSPACE Desktop. `mdspace-analysis` is kept in synch with the MDSPACE C++ library and MDSPACE Desktop and should be installed and used using the same major version used to produce the data.
 
 The goal is to check whether the conformations recovered by MDSPACE progressively move toward the synthetic conformational space used to generate the particle images.
 
@@ -15,16 +15,16 @@ The goal is to check whether the conformations recovered by MDSPACE progressivel
  <source src="../assets/mdspace_inspect.webm" type="video/webm">
 </video>
 <figcaption>
-    Fig 7. Workflow result inspection using MDSPACE desktop.
+    Fig 7. Workflow result inspection using MDSPACE Desktop.
 </figcaption>
 
 </figure>
 
 Once the MDSPACE run has completed, first inspect the results directly in the software. If the provided machines are too slow to run the analysis in a reasonable time, it is time to load the completed MDSPACE analysis provided in the practical data folder.
 
-Open the General tab and check that the MD jobs finished correctly. MDSPACE desktop can display all molecular dynamics simulation outputs, averaged across all simulations, including the image correlation coefficient (RESTR_CVS001) and other useful quantities.
+Open the General tab and check that the MD jobs finished correctly. MDSPACE Desktop can display all molecular dynamics simulation outputs, averaged across all simulations, including the image correlation coefficient (RESTR_CVS001) and other useful quantities.
 
-MDSPACE desktop can display quick PCA and UMAP projections of the recovered structures. At this stage, these plots are mainly used as diagnostic views: they help check whether the results look reasonable, whether some structures behave as outliers, and whether the analysis parameters are appropriate. In the Explorator tab, clicking on the map can select a structure and display the deformation during the simulation, the associated image, and the data for this given simulation. Selecting several points can reconstruct a volume and see the averaged MD simulation data.
+MDSPACE Desktop can display quick PCA and UMAP projections of the recovered structures. At this stage, these plots are mainly used as diagnostic views: they help check whether the results look reasonable, whether some structures behave as outliers, and whether the analysis parameters are appropriate. In the Explorator tab, clicking on the map can select a structure and display the deformation during the simulation, the associated image, and the data for this given simulation. Selecting several points can reconstruct a volume and see the averaged MD simulation data.
 
 This software-based inspection is useful for a first look, but we will continue the analysis in Python to compare the recovered structures with the synthetic ground truth.
 
@@ -41,7 +41,7 @@ The analysis will use two sources of structures:
 
 The synthetic structures correspond to the conformations used to generate the particle images. They are deformed structures before projection, rotation, and image shifts. The MDSPACE structures will be loaded from the registered frames, as these have already been placed in a common coordinate frame (the image one) that matches the synthetic structure.
 
-Because the 6RAF and 6RAH can have different atom orderings and atom counts, we will first compute a paired C-alpha selection between the two archives. This ensures that all structures are compared using the same atoms in the same order.
+Because the `6RAF` and `6RAH` can have different atom orderings and atom counts, we will first compute a paired C-alpha selection between the two archives. This ensures that all structures are compared using the same atoms in the same order.
 
 We will then project all structures into the same PCA space. We will also compute RMSD-based summaries to compare the recovered structures with the generated synthetic conformations.
 
@@ -190,11 +190,11 @@ To visually compare all structures, we project them onto a common PCA space.
 Here, the PCA space is computed using both:
 
 1. The generated ground-truth conformations.
-2. The initial 6RAH structure used to start the MDSPACE workflow.
+2. The initial `6RAH` structure used to start the MDSPACE workflow.
 
 The MDSPACE structures recovered at each iteration are then projected onto this same PCA basis.
 
-This choice makes the interpretation more informative. The generated conformations define the target conformational trajectory, while the initial 6RAH structure helps define the direction separating the starting structure from this target trajectory. As a result, the PCA space can show both the generated conformational variability and the displacement of the initial structure away from the generated conformational region.
+This choice makes the interpretation more informative. The generated conformations define the target conformational trajectory, while the initial `6RAH` structure helps define the direction separating the starting structure from this target trajectory. As a result, the PCA space can show both the generated conformational variability and the displacement of the initial structure away from the generated conformational region.
 
 All subplots are then displayed in the same PC1/PC2 coordinate system, allowing direct comparison between MDSPACE iterations.
 
@@ -227,7 +227,7 @@ initial_projection = pca_reference_projection[
 ].reshape(1, -1)
 
 print("Reference PCA explained variance:", pca.explained_variance_ratio_)
-print("Initial 6RAH projection:", initial_projection)
+print("Initial `6RAH` projection:", initial_projection)
 ```
 
 Now project each MDSPACE iteration into this same PCA space:
@@ -256,7 +256,7 @@ for iteration, frames in enumerate(mdspace_iterations):
 
 We can now plot each MDSPACE iteration in the same PCA space.
 
-Each subplot shows the generated ground-truth conformations, the initial 6RAH structure, and one MDSPACE iteration.
+Each subplot shows the generated ground-truth conformations, the initial `6RAH` structure, and one MDSPACE iteration.
 
 ```python
 fig, axes = plt.subplots(
@@ -294,7 +294,7 @@ for iteration, ax in enumerate(axes):
         initial_projection[0, 1],
         s=90,
         marker="*",
-        label="Initial 6RAH",
+        label="Initial `6RAH`",
     )
 
     ax.set_title(f"Iteration {iteration}")
@@ -307,7 +307,7 @@ plt.tight_layout()
 plt.show()
 ```
 
-The important point is that all four subplots use the same PCA axes. Therefore, the movement of the MDSPACE clouds can be interpreted as an evolution within one shared structural space. In this representation, the generated conformations define the target trajectory, while the initial 6RAH marker indicates where the workflow started before flexible fitting.
+The important point is that all four subplots use the same PCA axes. Therefore, the movement of the MDSPACE clouds can be interpreted as an evolution within one shared structural space. In this representation, the generated conformations define the target trajectory, while the initial `6RAH` marker indicates where the workflow started before flexible fitting.
 
 ---
 
@@ -406,7 +406,7 @@ plt.show()
 
 ## Interpretation of the results
 
-The PCA projection in Figure 8 shows the evolution of the structures recovered by MDSPACE across iterations. The PCA space is computed using only the generated ground-truth conformations together with the initial 6RAH structure. The structures recovered at each MDSPACE iteration are then projected into this common PCA space.
+The PCA projection in Figure 8 shows the evolution of the structures recovered by MDSPACE across iterations. The PCA space is computed using only the generated ground-truth conformations together with the initial `6RAH` structure. The structures recovered at each MDSPACE iteration are then projected into this common PCA space.
 
 <figure>
  <img width="800" height="600" src="../assets/pca.svg">

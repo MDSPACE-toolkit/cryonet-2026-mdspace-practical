@@ -2,7 +2,7 @@
 
 Welcome to the MDSPACE practical session for the CryoNET Advanced Image Processing Workshop 2026.
 
-In this practical, we will use the MDSPACE desktop to explore how cryo-EM image analysis and molecular dynamics simulation can be combined to study conformational variability.
+In this practical, we will use the MDSPACE Desktop to explore how cryo-EM image analysis and molecular dynamics simulation can be combined to study conformational variability.
 
 The session is built around a controlled TmrAB (simplified) recovery experiment described in [Vuillemot, Rémi, et al. "MDSPACE: Extracting continuous conformational landscapes from cryo-EM single particle datasets using 3D-to-2D flexible fitting based on Molecular Dynamics simulation." Journal of Molecular Biology 435.9 (2023): 167951.](https://www.sciencedirect.com/science/article/pii/S0022283623000074)
 
@@ -17,7 +17,7 @@ The objective of this session is to understand the complete MDSPACE workflow, fr
 By the end of the practical, you should understand:
 
 - How to create and configure an MDSPACE project.
-- How a synthetic cryo-EM dataset can be generated from a molecular structure inside MDSPACE desktop.
+- How a synthetic cryo-EM dataset can be generated from a molecular structure inside MDSPACE Desktop.
 - How MDSPACE combines image analysis and molecular dynamics to explore conformational change.
 - How to inspect intermediate and final results.
 
@@ -25,7 +25,7 @@ By the end of the practical, you should understand:
 
 ## Prerequisites
 
-The practical will be performed using MDSPACE desktop, and the data analysis will be performed using Python and the mdspace-analysis library.
+The practical will be performed using MDSPACE Desktop, and the data analysis will be performed using Python and the mdspace-analysis library.
 
 Before starting, participants should be comfortable with:
 
@@ -41,17 +41,17 @@ Before starting, participants should be comfortable with:
 
 The practical will use the following material:
 
-- MDSPACE desktop and its external dependencies that should already be installed.
-- 6RAF a TmrAB target conformation used to generate the synthetic cryo-EM dataset.
-- 6RAH a TmrAB starting conformation used to initialize the MDSPACE analysis.
+- MDSPACE Desktop and its external dependencies that should already be installed.
+- `6RAF` a TmrAB target conformation used to generate the synthetic cryo-EM dataset.
+- `6RAH` a TmrAB starting conformation used to initialize the MDSPACE analysis.
 - A complete, already-generated dataset and analysis folder will be provided as a backup.
 
 The practical uses two TmrAB conformations with distinct roles:
 
 | Structure | Used for dataset generation | Used as initial MDSPACE model | Used for final analysis |
 | --------- | --------------------------- | ----------------------------- | ----------------------- |
-| 6RAF      | Yes                         | No                            | Yes                     |
-| 6RAH      | No                          | Yes                           | Yes                     |
+| `6RAF`      | Yes                         | No                            | Yes                     |
+| `6RAH`      | No                          | Yes                           | Yes                     |
 
 ---
 

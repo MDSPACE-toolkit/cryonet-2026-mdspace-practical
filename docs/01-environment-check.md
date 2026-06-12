@@ -1,10 +1,10 @@
 # Introduction and environment check
 
-The goal of this first step is to ensure everyone can access the workshop environment, open MDSPACE desktop, and locate the required files for the practical.
+The goal of this first step is to ensure everyone can access the workshop environment, open MDSPACE Desktop, and locate the required files for the practical.
 
 At the end of this section, you should have:
 
-- MDSPACE desktop open and ready to use.
+- MDSPACE Desktop open and ready to use.
 - Access to the workshop data folder.
 - Access to the reference outputs, in case they are needed later.
 
