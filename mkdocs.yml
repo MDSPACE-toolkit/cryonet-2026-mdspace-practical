@@ -42,15 +42,21 @@ theme:
     - search.highlight
     - content.code.copy
     - content.tabs.link
+    - content.footnote.tooltips
+
+extra_css:
+  - extra.css
 
 markdown_extensions:
   - admonition
   - tables
   - attr_list
   - md_in_html
+  - footnotes
   - toc:
       permalink: true
   - pymdownx.details
   - pymdownx.superfences
+  - pymdownx.blocks.caption
   - pymdownx.tabbed:
       alternate_style: true

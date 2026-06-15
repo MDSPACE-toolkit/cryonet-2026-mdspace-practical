@@ -4,13 +4,13 @@ In this section, we will run the complete MDSPACE workflow using the synthetic d
 
 The goal is to start from another structure, the `6RAH` conformation, which differs from the `6RAF` conformation used to generate the dataset, and to test whether MDSPACE can recover structural deformations using molecular dynamics simulation and information from the cryo-EM image.
 
-<figure>
- <video width="800" height="600" controls autoplay muted loop>   <source src="../assets/run.webm" type="video/webm"> </video>
-<figcaption>
-    Fig 6. Complete analysis workflow using MDSPACE Desktop.
-</figcaption>
+<video width="800" height="600" controls autoplay muted loop>
+  <source src="../assets/run.webm" type="video/webm">
+</video>
 
-</figure>
+/// caption
+Fig. 6. Complete analysis workflow using MDSPACE Desktop.
+///
 
 ## Principle of MDSPACE
 
@@ -22,13 +22,13 @@ After each MDSPACE iteration, the fitted structures obtained from the particle i
 
 MDSPACE also refines the initial rigid-body alignment of the particles over the iterations. Therefore, the workflow progressively improves both the molecular conformations and the particle orientation and translation parameters.
 
-<figure>
- <img width="800" height="600" src="../assets/mdspace_paper.jpg">
-<figcaption>
-    Fig 7. Flowchart of the MDSPACE method from Vuillemot, Rémi, et al. "MDSPACE: Extracting continuous conformational landscapes from cryo-EM single particle datasets using 3D-to-2D flexible fitting based on Molecular Dynamics simulation." Journal of Molecular Biology 435.9 (2023): 167951.
-</figcaption>
+ ![Flowchart of the MDSPACE method](assets/mdspace_paper.jpg)
 
-</figure>
+/// caption
+Fig 7. Flowchart of the MDSPACE method reproduced from [^1].
+///
+
+[^1]: [Vuillemot, Rémi, et al. "MDSPACE: Extracting continuous conformational landscapes from cryo-EM single particle datasets using 3D-to-2D flexible fitting based on Molecular Dynamics simulation." Journal of Molecular Biology 435.9 (2023): 167951](https://www.sciencedirect.com/science/article/pii/S0022283623000074)
 
 The complete workflow contains seven main steps: six preparation steps followed by the MDSPACE analysis.
 
@@ -106,7 +106,8 @@ We will use a coarse-grained C-alpha Go model to generate the structure and the 
 
 This simplification is important for MDSPACE because the workflow performs many short MD simulations, one simulation per particle image and per MDSPACE iteration. A C-alpha Go model makes the practical feasible within a reasonable time while still allowing the recovery of meaningful large-scale conformational changes.
 
-Select CAGO as the force field, then click Start Step.
+Select CAGO as the force field, then click Start Step. The topology will be computed using the external dependency Smog2[^2].
+[^2]: [Noel, Jeffrey K., et al. "SMOG 2: a versatile software package for generating structure-based models." PLoS computational biology 12.3 (2016): e1004794.](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1004794)
 
 ---
 
@@ -118,7 +119,9 @@ Normal modes can be used in the NMMD part of the MDSPACE workflow. In NMMD, norm
 
 ### In this practical
 
-Because the synthetic dataset was itself generated using normal modes, **we do not use the normal modes during the recovery workflow**. However, normal modes can still be computed and visualized for inspection by clicking Start Step.
+Because the synthetic dataset was itself generated using normal modes, **we do not use the normal modes during the recovery workflow**. However, normal modes can still be computed, using the external dependency ELNEMO [^3], and visualized for inspection by clicking Start Step.
+
+[^3]: [SuhreK.SanejouandY. H. (2004). ELNEMO: a normal mode web server for protein movement analysis and the generation of templates for molecular replacement. Nucleic Acids Res. 32, W610–W614. 10.1093/nar/gkh368](https://pubmed.ncbi.nlm.nih.gov/15215461/)
 
 ---
 

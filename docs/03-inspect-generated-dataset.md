@@ -14,14 +14,14 @@ At the end of this section, you should understand:
 
 ## Open the generated dataset
 
-<figure>
-<video width="800" height="600" controls loop muted autoplay>   <source src="../assets/data_inspect.webm" type="video/webm"> </video>
+<video width="800" controls loop muted autoplay>
+  <source src="../assets/data_inspect.webm" type="video/webm">
+</video>
 
-<figcaption>
-    Fig 5. Dataset inspection using MDSPACE Desktop.
-</figcaption>
+/// caption
+Fig. 5. Dataset inspection using MDSPACE Desktop.
+///
 
-</figure>
 In MDSPACE Desktop, the dataset will open automatically once generation is complete. To reopen a dataset later, you have two options:
 
 - Drag and drop the entire dataset folder into the MDSPACE main window.

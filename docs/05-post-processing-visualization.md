@@ -10,15 +10,13 @@ The goal is to check whether the conformations recovered by MDSPACE progressivel
 
 ## Quick inspection in MDSPACE
 
-</figure>
 <video width="800" height="600" controls muted loop autoplay>
- <source src="../assets/mdspace_inspect.webm" type="video/webm">
+  <source src="../assets/mdspace_inspect.webm" type="video/webm">
 </video>
-<figcaption>
-    Fig 7. Workflow result inspection using MDSPACE Desktop.
-</figcaption>
 
-</figure>
+/// caption
+Fig. 7. Inspection of the workflow results using MDSPACE Desktop.
+///
 
 Once the MDSPACE run has completed, first inspect the results directly in the software. If the provided machines are too slow to run the analysis in a reasonable time, it is time to load the completed MDSPACE analysis provided in the practical data folder.
 
@@ -408,23 +406,21 @@ plt.show()
 
 The PCA projection in Figure 8 shows the evolution of the structures recovered by MDSPACE across iterations. The PCA space is computed using only the generated ground-truth conformations together with the initial `6RAH` structure. The structures recovered at each MDSPACE iteration are then projected into this common PCA space.
 
-<figure>
- <img width="800" height="600" src="../assets/pca.svg">
-<figcaption>
-    Fig 8. Evolution of the principal component space across MDSPACE iterations.
-</figcaption>
-</figure>
+![Evolution of the principal component space across MDSPACE iterations](assets/pca.svg){ width="800" height="600" }
+
+/// caption
+Fig. 8. Evolution of the principal component space across MDSPACE iterations.
+///
 
 At iteration 0, the MDSPACE structures are still widely distributed, indicating that the ensemble recovered during the first iteration contains substantial structural variability relative to the generated ground-truth trajectory. Across subsequent iterations, the MDSPACE cloud progressively moves closer to the generated conformational region and becomes more compact. This indicates that the iterative fitting procedure reduces the discrepancy between the starting model and the synthetic dataset.
 
 To quantify this trend, we computed the RMSD between each MDSPACE-recovered structure and its corresponding ground-truth conformation as shown in Figure 9.
 
-<figure>
- <img width="800" height="600" src="../assets/rmsd.svg">
-<figcaption>
-    Fig 9. Distribution of the per-image RMSD between each MDSPACE-recovered structure and its matching generated ground-truth conformation over MDSPACE iterations.
-</figcaption>
-</figure>
+![Distribution of the per-image RMSD across MDSPACE iterations](assets/rmsd.svg){ width="800" }
+
+/// caption
+Fig. 9. Distribution of the per-image RMSD between each MDSPACE-recovered structure and its corresponding generated ground-truth conformation across MDSPACE iterations.
+///
 
 The RMSD distribution confirms the visual trend observed in the PCA projection. The median RMSD decreases sharply from iteration 0 to iteration 1 and continues to improve thereafter.
 

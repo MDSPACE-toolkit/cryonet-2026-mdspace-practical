@@ -52,19 +52,19 @@ The PDB file contains the atomic coordinates of the target `6RAF` conformation. 
 
 The target structure is also deformed before projection.
 
-The deformations will be generated using normal mode analysis (NMA). Normal modes describe collective motions of the molecular structure. By moving the structure along one or several selected modes, it is possible to generate a controlled conformational variation.
+The deformations will be generated using normal mode analysis (NMA)[^1]. Normal modes describe collective motions of the molecular structure. By moving the structure along one or several selected modes, it is possible to generate a controlled conformational variation.
+
+[^1]: [SuhreK.SanejouandY. H. (2004). ELNEMO: a normal mode web server for protein movement analysis and the generation of templates for molecular replacement. Nucleic Acids Res. 32, W610–W614. 10.1093/nar/gkh368](https://pubmed.ncbi.nlm.nih.gov/15215461/)
 
 This allows the synthetic dataset to include not only different viewing directions, but also structural variability.
 
-<figure>
-  <video width="800" height="600" controls autoplay loop muted playsinline>
-    <source src="../assets/modes.webm" type="video/webm">
-  </video>
+<video width="800" controls autoplay loop muted playsinline>
+  <source src="../assets/modes.webm" type="video/webm">
+</video>
 
-<figcaption>
-    Fig 1. Structural displacements associated with modes 7 and 8 of `6RAF`.
-  </figcaption>
-</figure>
+/// caption
+Fig. 1. Structural displacements associated with modes 7 and 8 of `6RAF`.
+///
 
 ---
 
@@ -76,28 +76,24 @@ In single-particle cryo-EM, each particle image corresponds to a molecule observ
 
 ## Projection using a Gaussian representation
 
-To generate a 2D image from the atomic structure, the molecule is projected onto an image plane.
+To generate a 2D image from the atomic structure, the molecule is projected onto an image plane using [^2].
+[^2]: [De la Rosa-Trevín, J. M., et al. "Xmipp 3.0: an improved software suite for image processing in electron microscopy." Journal of structural biology 184.2 (2013): 321-328.]
 
 In practice, atoms can be represented using Gaussian functions. The projected image is then obtained by accumulating the contribution of these Gaussian densities along the projection direction.
 
-<figure>
-  <video width="800" height="600" controls autoplay loop muted playsinline>
-    <source src="../assets/3D.webm" type="video/webm">
-  </video>
+<video width="800" controls autoplay loop muted playsinline>
+  <source src="../assets/3D.webm" type="video/webm">
+</video>
 
-<figcaption>
-    Fig 2. Three-dimensional density generated using Gaussian atomic representations.
-  </figcaption>
-</figure>
+/// caption
+Fig. 2. Three-dimensional density generated using Gaussian atomic representations.
+///
 
-<figure>
-  <img width="400" height="300" src=../assets/projection.png>
+![Two-dimensional projection of the generated density](assets/projection.png){ width="400" }
 
-<figcaption>
-    Fig3. Two-dimensional projection of the generated density.
-  </figcaption>
-</figure>
-
+/// caption
+Fig. 3. Two-dimensional projection of the generated density.
+///
 ---
 
 ## CTF simulation
@@ -108,27 +104,26 @@ The CTF modifies the image in Fourier space, introducing characteristic contrast
 
 Noise is then added to the images to approximate the low signal-to-noise ratio typical of cryo-EM particle images.
 
-The final synthetic dataset, therefore, contains images closer to realistic cryo-EM observations than to ideal mathematical projections.
+The final synthetic dataset, therefore, contains images closer to realistic cryo-EM observations than to ideal mathematical projections, we use [^2] to simulate the CTF.
 
 ---
 
 ## Generate the dataset in MDSPACE Desktop
 
-<figure>
-<video width="800" height="600" controls loop autoplay muted>
- <source src="../assets/generation.webm" type="video/webm">
+<video width="800" controls loop autoplay muted>
+  <source src="../assets/generation.webm" type="video/webm">
 </video>
-<figcaption>
-    Fig 4. Dataset generation using MDSPACE Desktop.
-  </figcaption>
-</figure>
+
+/// caption
+Fig. 4. Dataset generation using MDSPACE Desktop.
+///
 
 1. Download the input [`6RAF`.pdb](https://files.rcsb.org/download/`6RAF`.pdb) file.
 2. Open the data generation module in MDSPACE using Tools > Data Generator. A new data generator window is created in the interface.
 3. In the Parameter dock, specify a data folder (e.g., ‘generated_dataset’) as the output directory where the generated dataset will be stored.
 4. Select `6RAF`.pdb as the input PDB file.
 5. In order to optimize processing time for this practical while still producing meaningful results, we suggest this set of parameters:
-     - Image number: 200.
+     - Image number: 50.
      - Sampling: 2 Å/pixel.
      - Size: 128 pixels.
      - Resize: 1.
@@ -138,8 +133,6 @@ The final synthetic dataset, therefore, contains images closer to realistic cryo
 These values are chosen to balance computational efficiency with scientific value. A moderate number of images keeps processing time short but provides enough data for analysis. We create a square image of 128 pixels by 128 pixels, sampling at 2 Å/pixel with a target signal-to-noise ratio of 0.1 using the first 2 non-trivial normal modes for deformation.
 
 The user can experiment by setting the other parameters as they see fit. The documentation for each parameter is accessible by hovering over the input widgets.
-
-
 
 Then start the dataset generation by clicking Start Step.
 
