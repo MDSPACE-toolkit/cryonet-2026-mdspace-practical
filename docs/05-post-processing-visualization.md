@@ -409,14 +409,14 @@ The PCA projection in Figure 8 shows the evolution of the structures recovered b
 ![Evolution of the principal component space across MDSPACE iterations](assets/pca.svg){ width="800" height="600" }
 
 /// caption
-Fig. 8. Evolution of the principal component space across MDSPACE iterations.
+Fig. 8. Evolution of the principal-component space across MDSPACE iterations. The analysis was performed using 10,000 steps with a time step of 0.0035 ns and a restraint constant, (K) of 3,500 kcal/mol.
 ///
 
 At iteration 0, the MDSPACE structures are still widely distributed, indicating that the ensemble recovered during the first iteration contains substantial structural variability relative to the generated ground-truth trajectory. Across subsequent iterations, the MDSPACE cloud progressively moves closer to the generated conformational region and becomes more compact. This indicates that the iterative fitting procedure reduces the discrepancy between the starting model and the synthetic dataset.
 
 To quantify this trend, we computed the RMSD between each MDSPACE-recovered structure and its corresponding ground-truth conformation as shown in Figure 9.
 
-![Distribution of the per-image RMSD across MDSPACE iterations](assets/rmsd.svg){ width="800" }
+![Distribution of the per-structure RMSD across MDSPACE iterations](assets/rmsd.svg){ width="800" }
 
 /// caption
 Fig. 9. Distribution of the per-image RMSD between each MDSPACE-recovered structure and its corresponding generated ground-truth conformation across MDSPACE iterations.

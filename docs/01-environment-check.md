@@ -10,9 +10,18 @@ At the end of this section, you should have:
 
 ---
 
-## Workshop environment
+## MDSPACE Desktop
 
-The practical will be performed in the computing environment provided for the workshop, which should already include MDSPACE installed as a bundle.
+MDSPACE Desktop is a standalone graphical application that implements the MDSPACE method and provides all the preprocessing steps required to prepare the input data. Several of these steps rely on external programs, which must be available to MDSPACE Desktop at runtime.
+
+On Linux, the distributed MDSPACE bundle includes all required external dependencies. They are automatically extracted and configured at runtime, so no additional installation is required.
+
+On other operating systems, these external dependencies are not currently bundled and must be compiled and installed manually. The required dependencies are:
+
+- [XMIPP](https://github.com/I2PC/xmipp)
+- [The MDSPACE-modified version of ELNEMO](https://github.com/MDSPACE-toolkit/nma)
+- [MDSPACE-GENESIS](https://github.com/MDSPACE-toolkit/mdspace-genesis)
+- Optionally, a topology generator such as [SMOG 2](https://smog-server.org/smog2/) or [Martinize2](https://github.com/marrink-lab/vermouth-martinize). Alternatively, topology files can be generated separately and imported into MDSPACE Desktop.
 
 ---
 

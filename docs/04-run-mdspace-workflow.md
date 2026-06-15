@@ -159,9 +159,9 @@ After the first iteration, MDSPACE analyzes the ensemble of fitted structures us
 
 - Iteration: 4.
 - Number of Steps: 10 000.
-- Time Step: 0.003 ps.
+- Time Step: 0.0035 ps.
 - Simulation Type: MD_THEN_NMMD.
-- Restraint Constant K: 3 000 kcal/mol.
+- Restraint Constant K: 3 500 kcal/mol.
 
 This iterative process incorporates ensemble conformational information into the MD simulation, making the 3D-to-2D fitting of individual particle images more robust to noise and to views where conformational changes are less detectable or ambiguous in the projection plane.
 
