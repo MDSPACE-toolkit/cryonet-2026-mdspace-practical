@@ -12,16 +12,38 @@ At the end of this section, you should have:
 
 ## MDSPACE Desktop
 
-MDSPACE Desktop is a standalone graphical application that implements the MDSPACE method and provides all the preprocessing steps required to prepare the input data. Several of these steps rely on external programs, which must be available to MDSPACE Desktop at runtime.
+MDSPACE Desktop is a standalone graphical application that implements the MDSPACE method and provides the preprocessing steps required to prepare input data. Some of these operations rely on external programs that must be available at runtime.
 
-On Linux, the distributed MDSPACE bundle includes all required external dependencies. They are automatically extracted and configured at runtime, so no additional installation is required.
+### Linux installation
 
-On other operating systems, these external dependencies are not currently bundled and must be compiled and installed manually. The required dependencies are:
+On Linux, MDSPACE Desktop can be installed in two ways:
 
-- [XMIPP](https://github.com/I2PC/xmipp)
-- [The MDSPACE-modified version of ELNEMO](https://github.com/MDSPACE-toolkit/nma)
-- [MDSPACE-GENESIS](https://github.com/MDSPACE-toolkit/mdspace-genesis)
-- Optionally, a topology generator such as [SMOG 2](https://smog-server.org/smog2/) or [Martinize2](https://github.com/marrink-lab/vermouth-martinize). Alternatively, topology files can be generated separately and imported into MDSPACE Desktop.
+1. Native RPM installation on Enterprise Linux 9 or 10.
+   On AlmaLinux, Rocky Linux, Red Hat Enterprise Linux, and compatible distributions, MDSPACE Desktop and its external dependencies can be installed directly with dnf using the provided RPM packages     Separate packages are available for:
+   
+   * EL9 and EL10
+   * x86_64 and aarch64
+
+2. Portable MDSPACE bundle
+   For other Linux distributions, the recommended installation method is the portable MDSPACE bundle. The bundle includes MDSPACE Desktop, along with the required external programs and libraries.
+   Bundles are provided for:
+   
+   * EL9-compatible systems using glibc 2.34 or newer
+   * EL10-compatible systems using glibc 2.39 or newer
+   *  x86_64 and aarch64
+   
+   The appropriate bundle must be selected according to the system architecture and glibc version. Once started, the bundle automatically extracts and configures its contents, so no system-wide installation of external dependencies is required.
+
+### Windows and macOS
+
+Native Windows and macOS packages are not currently provided.
+
+Users on these operating systems should run MDSPACE Desktop through the provided prebuilt AlmaLinux virtual machine using VirtualBox. The virtual machine contains a complete Linux environment with MDSPACE Desktop and its required dependencies already installed and configured.
+
+The available virtual-machine image must match the host architecture:
+
+* x86_64 for Intel and AMD Windows computers and Intel-based Macs
+* aarch64 for Apple Silicon Macs
 
 ---
 

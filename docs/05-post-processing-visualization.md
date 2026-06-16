@@ -70,7 +70,7 @@ from mdspace_analysis.geometry import align_coordinates, rmsd
 
 ---
 
-## Set the input paths
+## Set the input path
 
 Set the path to the generated synthetic dataset and to the MDSPACE project folder:
 
