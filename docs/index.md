@@ -14,6 +14,12 @@ We will first generate a synthetic cryo-EM dataset from a single known TmrAB con
 
 The objective of this session is to understand the complete MDSPACE workflow, from structure-based data generation to conformational recovery and interpretation.
 
+![Practical overview](assets/practical_overview.svg)
+
+/// caption
+Fig. 1. Practical overview.
+///
+
 By the end of the practical, you should understand:
 
 - How to create and configure an MDSPACE project.
