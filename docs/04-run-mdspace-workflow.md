@@ -2,6 +2,12 @@
 
 In this section, we will run the complete MDSPACE workflow using the synthetic dataset generated in the previous steps.
 
+![MDSPACE workflow overview](assets/mdspace_overview.svg)
+
+/// caption
+Fig. 0. MDSPACE workflow overview.
+///
+
 The goal is to start from another structure, the `6RAH` conformation, which differs from the `6RAF` conformation used to generate the dataset, and to test whether MDSPACE can recover structural deformations using molecular dynamics simulation and information from the cryo-EM image.
 
 <video width="800" height="600" controls autoplay muted loop>
@@ -9,10 +15,10 @@ The goal is to start from another structure, the `6RAH` conformation, which diff
 </video>
 
 /// caption
-Fig. 6. Complete analysis workflow using MDSPACE Desktop.
+Fig. 1. Complete analysis workflow using MDSPACE Desktop.
 ///
 
-## Principle of MDSPACE
+## Principle of MDSPACE method
 
 MDSPACE, for **M**olecular **D**ynamics simulation for **S**ingle **P**article **A**nalysis of **C**ontinuous **C**onformational h**E**terogeneity, is an iterative method designed to extract continuous conformational landscapes from cryo-EM single-particle images.
 
@@ -25,7 +31,7 @@ MDSPACE also refines the initial rigid-body alignment of the particles over the 
  ![Flowchart of the MDSPACE method](assets/mdspace_paper.jpg)
 
 /// caption
-Fig 7. Flowchart of the MDSPACE method reproduced from [^1].
+Fig 2. Flowchart of the MDSPACE method reproduced from [^1].
 ///
 
 [^1]: [Vuillemot, Rémi, et al. "MDSPACE: Extracting continuous conformational landscapes from cryo-EM single particle datasets using 3D-to-2D flexible fitting based on Molecular Dynamics simulation." Journal of Molecular Biology 435.9 (2023): 167951](https://www.sciencedirect.com/science/article/pii/S0022283623000074)
