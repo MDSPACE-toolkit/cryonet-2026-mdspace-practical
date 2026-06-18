@@ -56,19 +56,17 @@ In single-particle cryo-EM, each particle image corresponds to a molecule observ
 
 ---
 
-## Projection using a Gaussian representation
+## Projection using an atomic scattering-factor representation
 
-To generate a 2D image from the atomic structure, the molecule is projected onto an image plane using [^2].
+To generate a 2D image from the atomic structure, the molecule is first converted into a three-dimensional density volume using XMIPP's element-specific atomic scattering profiles. [^2]. The volume is then projected onto an image plane along a selected projection direction.
 [^2]: [De la Rosa-Trevín, J. M., et al. "Xmipp 3.0: an improved software suite for image processing in electron microscopy." Journal of structural biology 184.2 (2013): 321-328.]
-
-In practice, atoms can be represented using Gaussian functions. The projected image is then obtained by accumulating the contribution of these Gaussian densities along the projection direction.
 
 <video width="800" controls autoplay loop muted playsinline>
   <source src="../assets/3D.webm" type="video/webm">
 </video>
 
 /// caption
-Fig. 2. Three-dimensional density generated using Gaussian atomic representations.
+Fig. 2. Three-dimensional density generated using element-specific atomic scattering profiles.
 ///
 
 ![Two-dimensional projection of the generated density](assets/projection.png){ width="400" }
