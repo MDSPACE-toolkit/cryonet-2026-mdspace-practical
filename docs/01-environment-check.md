@@ -12,7 +12,7 @@ At the end of this section, you should have:
 
 ## MDSPACE Desktop
 
-MDSPACE Desktop is a standalone graphical application that implements the MDSPACE method and provides the preprocessing steps required to prepare input data. Some of these operations rely on external programs that must be available at runtime.
+MDSPACE Desktop is a standalone graphical application that implements the MDSPACE method and provides the preprocessing steps required to prepare input data. Some of these operations rely on external programs that must be available at runtime. The complete installation guide can be found [here](assets/installation.pdf).
 
 ### Linux installation
 
@@ -81,7 +81,7 @@ You should be able to locate this folder alongside the MDSPACE bundle.
 
 Reference outputs are provided so that all participants can continue the practical even if a live run fails or takes longer than expected.
 
-The reference material can be downloaded [here](https://gallois.cc/assets/cryonet/archive.tar.gz) and includes:
+The reference material can be downloaded [here](https://gallois.cc/assets/cryonet/cryonet-2026.tar.gz) and includes:
 
 - A precomputed synthetic dataset.
 - A completed MDSPACE analysis.
