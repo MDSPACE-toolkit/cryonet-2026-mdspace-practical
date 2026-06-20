@@ -31,6 +31,7 @@ During the practical, the instructor will provide the link to download the MDSPA
 ## MDSPACE Desktop installation options
 
 On Linux, MDSPACE Desktop can be installed in two main ways.
+Check the download page [here](https://gallois.cc/assets/cryonet.html).
 
 ### Native RPM installation
 
@@ -135,7 +136,7 @@ It includes:
 
 The structures used in the practical can also be downloaded from the RCSB PDB:
 
-- [6RAF](https://files.rcsb.org/download/6RAF.pdb)
+- [6RAF](https://gallois.cc/assets/6RAF.pdb)
 - [6RAH](https://files.rcsb.org/download/6RAH.pdb)
 
 The completed MDSPACE analysis can be opened by dragging the corresponding analysis folder into the MDSPACE Desktop interface.
