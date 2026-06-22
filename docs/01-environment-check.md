@@ -78,11 +78,11 @@ Open a terminal in the workshop environment and move to the folder containing th
 
 For an x86_64 system, start MDSPACE Desktop with:
 
-`./MdSpace-Desktop-bundle-x86_64.run`
+`QT_QPA_PLATFORM=xcb ./MdSpace-Desktop-bundle-x86_64.run`
 
 For an aarch64 / ARM64 system, use the corresponding aarch64 bundle:
 
-`./MdSpace-Desktop-bundle-aarch64.run`
+`QT_QPA_PLATFORM=xcb ./MdSpace-Desktop-bundle-aarch64.run`
 
 If the command fails, check that you are in the correct directory and that the file is executable.
 
