@@ -28,3 +28,10 @@ The software is currently used through two complementary execution modes. For sm
 The implementation remains under active development and is being stabilized in preparation for public release. At the moment, the software is not publicly available. If you would like to try it, please contact us.
 
 Future improvements will focus on robustness, reduced computation time, improved HPC integration, and an easier-to-use workflow for larger or more realistic datasets.
+
+## Contact
+
+For questions, contact:
+
+- Slavica JONIC: `slavica.jonic [at] sorbonne-universite [dot] fr`
+- Benjamin GALLOIS: `benjamin.gallois [at] sorbonne-universite [dot] fr`
