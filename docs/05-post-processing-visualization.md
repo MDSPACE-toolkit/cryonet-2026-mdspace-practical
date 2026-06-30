@@ -10,8 +10,11 @@ The goal is to check whether the conformations recovered by MDSPACE progressivel
 
 ## Quick inspection in MDSPACE
 
-<video width="800" height="600" controls muted loop autoplay>
+<video width="800" height="600" controls muted loop autoplay playsinline>
   <source src="../assets/mdspace_inspect.webm" type="video/webm">
+  <a href="https://mdspace-toolkit.github.io/cryonet-2026-mdspace-practical/assets/mdspace_inspect.webm">
+    Open the video in the interactive online version
+  </a>
 </video>
 
 /// caption

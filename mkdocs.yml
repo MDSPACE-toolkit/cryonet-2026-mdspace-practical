@@ -64,3 +64,12 @@ markdown_extensions:
 plugins:
   - search
   - glightbox
+  - with-pdf:
+      author: "Benjamin Gallois"
+      copyright: "© 2026"
+      cover: true
+      back_cover: true
+      cover_subtitle: ""
+      toc_title: "Table of Contents"
+      enabled_if_env: ENABLE_PDF_EXPORT
+      output_path: pdf/cryonet-2026-mdspace-practical.pdf

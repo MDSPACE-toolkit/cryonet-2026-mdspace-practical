@@ -39,8 +39,24 @@ On Enterprise Linux 9 or 10 systems, including AlmaLinux, Rocky Linux, Red Hat E
 
 Separate packages are available for:
 
-- EL9 and EL10;
+- EL9 and EL10.
 - x86_64 and aarch64.
+
+### Native DEB installation
+
+On Debian and Ubuntu, MDSPACE desktop and its external dependencies can be installed directly with apt using the provided DEB packages.
+
+Separate packages are available for:
+
+- Debian 12.
+
+- Debian 13.
+
+- Ubuntu 22.04.
+
+- Ubuntu 24.04
+
+- Ubuntu 26.04.
 
 ### Portable MDSPACE bundle
 
@@ -78,21 +94,21 @@ Open a terminal in the workshop environment and move to the folder containing th
 
 For an x86_64 system, start MDSPACE Desktop with:
 
-`QT_QPA_PLATFORM=xcb ./MdSpace-Desktop-bundle-x86_64.run`
+`./MdSpace-bundle-x86_64.run`
 
 For an aarch64 / ARM64 system, use the corresponding aarch64 bundle:
 
-`QT_QPA_PLATFORM=xcb ./MdSpace-Desktop-bundle-aarch64.run`
+`./MdSpace-Desktop-bundle-aarch64.run`
 
 If the command fails, check that you are in the correct directory and that the file is executable.
 
 For x86_64:
 
-`chmod +x ./MdSpace-Desktop-bundle-x86_64.run`
+`chmod +x ./MdSpace-bundle-x86_64.run`
 
 For aarch64 / ARM64:
 
-`chmod +x ./MdSpace-Desktop-bundle-aarch64.run`
+`chmod +x ./MdSpace-bundle-aarch64.run`
 
 Then run the bundle again.
 

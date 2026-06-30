@@ -14,8 +14,11 @@ At the end of this section, you should understand:
 
 ## Open the generated dataset
 
-<video width="800" controls loop muted autoplay>
+<video width="800" controls loop muted autoplay playsinline>
   <source src="../assets/data_inspect.webm" type="video/webm">
+  <a href="https://mdspace-toolkit.github.io/cryonet-2026-mdspace-practical/assets/data_inspect.webm">
+    Open the video in the interactive online version
+  </a>
 </video>
 
 /// caption

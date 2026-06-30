@@ -42,6 +42,9 @@ This allows the synthetic dataset to include not only different viewing directio
 
 <video width="800" controls autoplay loop muted playsinline>
   <source src="../assets/modes.webm" type="video/webm">
+  <a href="https://mdspace-toolkit.github.io/cryonet-2026-mdspace-practical/assets/modes.webm">
+    Open the video in the interactive online version
+  </a>
 </video>
 
 /// caption
@@ -63,6 +66,7 @@ To generate a 2D image from the atomic structure, the molecule is first converte
 
 <video width="800" controls autoplay loop muted playsinline>
   <source src="../assets/3D.webm" type="video/webm">
+  <a href="https://mdspace-toolkit.github.io/cryonet-2026-mdspace-practical/assets/3D.webm">Open the video in the interactive online version</a>
 </video>
 
 /// caption
@@ -90,8 +94,11 @@ The final synthetic dataset, therefore, contains images closer to realistic cryo
 
 ## Generate the dataset in MDSPACE Desktop
 
-<video width="800" controls loop autoplay muted>
+<video width="800" controls loop autoplay muted playsinline>
   <source src="../assets/generation.webm" type="video/webm">
+  <a href="https://mdspace-toolkit.github.io/cryonet-2026-mdspace-practical/assets/generation.webm">
+    Open the video in the interactive online version
+  </a>
 </video>
 
 /// caption

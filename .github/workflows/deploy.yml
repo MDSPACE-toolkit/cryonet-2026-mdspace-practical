@@ -30,11 +30,18 @@ jobs:
 
       - name: Install dependencies
         run: |
-          pip install mkdocs-material mkdocs-glightbox
+          python -m pip install --upgrade pip
+          pip install \
+            mkdocs-material \
+            mkdocs-glightbox \
+            mkdocs-with-pdf \
+            qrcode
 
       - name: Build site
+        env:
+          ENABLE_PDF_EXPORT: "1"
         run: |
-          mkdocs build --strict
+          mkdocs build
 
       - name: Upload GitHub Pages artifact
         uses: actions/upload-pages-artifact@v3

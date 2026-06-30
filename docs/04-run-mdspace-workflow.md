@@ -20,8 +20,11 @@ The complete workflow contains seven main steps: six preparation steps followed 
 6. Minimize the molecular system.
 7. Run the MDSPACE analysis.
 
-<video width="800" height="600" controls autoplay muted loop>
+<video width="800" height="600" controls autoplay muted loop playsinline>
   <source src="../assets/run.webm" type="video/webm">
+  <a href="https://mdspace-toolkit.github.io/cryonet-2026-mdspace-practical/assets/run.webm">
+    Open the video in the interactive online version
+  </a>
 </video>
 
 /// caption
