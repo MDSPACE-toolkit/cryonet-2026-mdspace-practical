@@ -50,8 +50,9 @@ A typical generated folder may look like this:
 | eigenvalues.txt       | Eigenvalues associated with the computed normal modes                                   |
 | modes/                | Normal mode vectors used for deformation                                                |
 | pdbs/                 | Deformed PDB structures generated for individual particles (but not shifted or rotated) |
-| data_spi/             | Individual SPIDER images and associated metadata                                        |
-| data_stack/           | Final MRCS image stack and metadata                                                     |
+| data_spi/             | Individual SPIDER images and associated metadata for the EM variant                     |
+| data_stack/           | Final MRCS image stack and metadata for the EM variant                                  |
+| data_volumes/         | Final subtomogram stack and metadata for the ET variant                                |
 | generated_data.h5     | The coordinate-level ground truth                                                       |
 
 ---
@@ -73,7 +74,18 @@ When browsing the generated images, check the following points:
 
 ## Inspect the metadata
 
-The metadata files describe the simulated particles. You should find metadata in `data_spi/particles_spi.xmd` and `data_stack/particles.xmd`, and it should be displayed in the software individually when you browse the dataset.
+The metadata files describe the simulated particles. Depending on the selected variant, inspect:
+
+=== "Single-particle EM"
+
+    - `data_spi/particles_spi.xmd`: individual SPIDER images and metadata.
+    - `data_stack/particles.xmd`: final MRCS stack and metadata.
+
+=== "Tomography ET"
+
+    - `data_volumes/subtomograms.xmd`: generated subtomograms and their metadata.
+
+The selected metadata should be displayed in the software when you browse the generated dataset.
 
 ---
 

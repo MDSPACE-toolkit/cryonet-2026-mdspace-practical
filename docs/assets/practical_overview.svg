@@ -6,7 +6,7 @@
    version="1.1"
    id="svg7897"
    sodipodi:docname="practical_overview.svg"
-   inkscape:version="1.1.1 (3bf5ae0d25, 2021-09-20)"
+   inkscape:version="1.4.3 (0d15f75042, 2025-12-25)"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -22,19 +22,21 @@
      inkscape:pagecheckerboard="false"
      showgrid="false"
      inkscape:zoom="0.784375"
-     inkscape:cx="923.66534"
+     inkscape:cx="924.30279"
      inkscape:cy="664.86056"
-     inkscape:window-width="1920"
-     inkscape:window-height="1080"
-     inkscape:window-x="0"
-     inkscape:window-y="0"
+     inkscape:window-width="1896"
+     inkscape:window-height="1028"
+     inkscape:window-x="1928"
+     inkscape:window-y="36"
      inkscape:window-maximized="1"
-     inkscape:current-layer="g134896"
+     inkscape:current-layer="g119468"
      showguides="false"
      fit-margin-top="0"
      fit-margin-left="0"
      fit-margin-right="0"
-     fit-margin-bottom="0" />
+     fit-margin-bottom="0"
+     inkscape:showpageshadow="2"
+     inkscape:deskcolor="#d1d1d1" />
   <defs
      id="defs7579">
     <rect
@@ -318,7 +320,7 @@
        xml:space="preserve"><tspan
          x="932.32593"
          y="-173.36501"
-         id="tspan7058">Do the structures recovered by MDSPACE move toward the ground-truth conformational ensemble?</tspan></text>
+         id="tspan1">Do the structures recovered by MDSPACE move toward the ground-truth conformational ensemble?</tspan></text>
     <rect
        x="-199.1675"
        y="804.2843"
@@ -549,12 +551,12 @@
              xml:space="preserve"><tspan
                x="603.2132"
                y="192.01814"
-               id="tspan7060">Synthetic cryo-EM<tspan
+               id="tspan3">Synthetic cryo-EM/ET<tspan
    y="192.01814"
-   id="tspan7062"> </tspan></tspan><tspan
+   id="tspan4"> </tspan></tspan><tspan
                x="603.2132"
                y="222.01815"
-               id="tspan7064">particle images</tspan></text>
+               id="tspan5">particle images</tspan></text>
           <rect
              x="453.21313"
              y="50.386719"
@@ -756,58 +758,76 @@
          xml:space="preserve"
          id="text56665"
          style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect56667);fill:#000000;fill-opacity:1;stroke:none"
-         transform="translate(19.596724,-14)"><tspan
+         transform="translate(19.596724,-24)"><tspan
            x="81.134766"
-           y="91.283203"
-           id="tspan7068"><tspan
+           y="92.287585"
+           id="tspan7"><tspan
              style="font-size:20px;-inkscape-font-specification:'sans-serif, Normal'"
-             id="tspan7066">- Deformation
+             id="tspan6">- Deformation
 </tspan></tspan><tspan
            x="81.134766"
-           y="141.2832"
-           id="tspan7072"><tspan
+           y="142.28759"
+           id="tspan9"><tspan
              style="font-size:20px;-inkscape-font-specification:'sans-serif, Normal'"
-             id="tspan7070">- Shift &amp; Rotation
+             id="tspan8">- Shift &amp; Rotation
 </tspan></tspan><tspan
            x="81.134766"
-           y="191.2832"
-           id="tspan7076"><tspan
+           y="192.28759"
+           id="tspan11"><tspan
              style="font-size:20px;-inkscape-font-specification:'sans-serif, Normal'"
-             id="tspan7074">- Projection
+             id="tspan10">- Projection
 </tspan></tspan><tspan
            x="81.134766"
-           y="241.2832"
-           id="tspan7080"><tspan
+           y="242.28759"
+           id="tspan13"><tspan
              style="font-size:20px;-inkscape-font-specification:'sans-serif, Normal'"
-             id="tspan7078">- CTF</tspan></tspan></text>
+             id="tspan12">- CTF
+</tspan></tspan></text>
       <text
          xml:space="preserve"
          id="text56665-8"
          style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect56667-4);fill:#000000;fill-opacity:1;stroke:none"
-         transform="translate(12.22856,407.06728)"><tspan
+         transform="translate(12.22856,419.06728)"><tspan
            x="81.134766"
-           y="91.283203"
-           id="tspan7084"><tspan
+           y="92.287585"
+           id="tspan15"><tspan
              style="font-size:20px;-inkscape-font-specification:'sans-serif, Normal'"
-             id="tspan7082">- Rigid registration
+             id="tspan14">- Averaging
 </tspan></tspan><tspan
            x="81.134766"
-           y="141.2832"
-           id="tspan7088"><tspan
+           y="142.28759"
+           id="tspan17"><tspan
              style="font-size:20px;-inkscape-font-specification:'sans-serif, Normal'"
-             id="tspan7086">- Topology
+             id="tspan16">- Rigid registration
 </tspan></tspan><tspan
            x="81.134766"
-           y="191.2832"
-           id="tspan7092"><tspan
+           y="192.28759"
+           id="tspan19"><tspan
              style="font-size:20px;-inkscape-font-specification:'sans-serif, Normal'"
-             id="tspan7090">- Minimization
+             id="tspan18">- Topology
 </tspan></tspan><tspan
            x="81.134766"
-           y="241.2832"
-           id="tspan7096"><tspan
+           y="242.28759"
+           id="tspan21"><tspan
              style="font-size:20px;-inkscape-font-specification:'sans-serif, Normal'"
-             id="tspan7094">- MdSpace</tspan></tspan></text>
+             id="tspan20">- Relaxation
+</tspan></tspan><tspan
+           x="81.134766"
+           y="332.62352"
+           id="tspan23"><tspan
+             dx="0 6.4400101 5.2000046 18.139992 12.299995 10.979996 12.299995 11.220016 9.5999908 11.279984 7.4399948 18.139992 12.299995 9.7200012 12.099991 18.699997"
+             style="font-size:20px;-inkscape-font-specification:'sans-serif, Normal'"
+             id="tspan22">- MdSpace/MdTomo</tspan></tspan></text>
+      <text
+         xml:space="preserve"
+         style="writing-mode:lr-tb;direction:ltr;fill:#000000"
+         x="156.63223"
+         y="198.67529"
+         id="text1"><tspan
+           sodipodi:role="line"
+           id="tspan2"
+           x="156.63223"
+           y="198.67529" /></text>
     </g>
   </g>
 </svg>

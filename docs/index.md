@@ -4,9 +4,19 @@ Welcome to the MDSPACE practical session for the CryoNET Advanced Image Processi
 
 In this practical, we will use the MDSPACE Desktop to explore how cryo-EM image analysis and molecular dynamics simulation can be combined to study conformational variability.
 
-The session is built around a controlled TmrAB (simplified) recovery experiment described in [Vuillemot, Rémi, et al. "MDSPACE: Extracting continuous conformational landscapes from cryo-EM single particle datasets using 3D-to-2D flexible fitting based on Molecular Dynamics simulation." Journal of Molecular Biology 435.9 (2023): 167951.](https://www.sciencedirect.com/science/article/pii/S0022283623000074)
+The session is built around a controlled TmrAB (simplified) recovery experiment. Select the variant corresponding to the data type being analyzed:
 
-We will first generate a synthetic cryo-EM dataset from a single known TmrAB conformation using normal modes analysis. Then, we will initialize MDSPACE from a different TmrAB conformation and test whether the workflow can recover the conformations that generated the dataset.
+=== "Single-particle EM"
+
+    This practical uses MDSPACE to analyze single-particle cryo-EM images through 3D-to-2D flexible fitting based on molecular dynamics simulations. See [Vuillemot et al., *MDSPACE*, Journal of Molecular Biology 435, 167951 (2023)](https://doi.org/10.1016/j.jmb.2023.167951).
+
+    We will first generate a synthetic dataset of 2D cryo-EM particle images from a known `6RAF` TmrAB conformation using normal modes analysis. We will then initialize MDSPACE from the different `6RAH` conformation and test whether the workflow recovers the conformations that generated the images.
+
+=== "Tomography ET"
+
+    This practical uses MDTOMO to analyze cryo-ET subtomograms through 3D flexible fitting based on molecular dynamics simulations. See [Vuillemot, Rouiller & Jonić, *MDTOMO*, Scientific Reports 13, 10596 (2023)](https://doi.org/10.1038/s41598-023-37037-9).
+
+    We will first generate a synthetic dataset of 3D cryo-ET subtomograms from a known `6RAF` TmrAB conformation using normal modes analysis. We will then initialize the tomography workflow from the different `6RAH` conformation and test whether it recovers the conformations that generated the subtomograms.
 
 ---
 
@@ -23,7 +33,7 @@ Fig. 1. Practical overview.
 By the end of the practical, you should understand:
 
 - How to create and configure an MDSPACE project.
-- How a synthetic cryo-EM dataset can be generated from a molecular structure inside MDSPACE Desktop.
+- How a synthetic cryo-EM/ET dataset can be generated from a molecular structure inside MDSPACE Desktop.
 - How MDSPACE combines image analysis and molecular dynamics to explore conformational change.
 - How to inspect intermediate and final results.
 
@@ -48,9 +58,8 @@ Before starting, participants should be comfortable with:
 The practical will use the following material:
 
 - MDSPACE Desktop and its external dependencies that should already be installed.
-- `6RAF` a TmrAB target conformation used to generate the synthetic cryo-EM dataset.
+- `6RAF` a TmrAB target conformation used to generate the synthetic cryo-EM/ET dataset.
 - `6RAH` a TmrAB starting conformation used to initialize the MDSPACE analysis.
-- A complete, already-generated dataset and analysis folder will be provided as a backup.
 
 The practical uses two TmrAB conformations with distinct roles:
 
@@ -75,19 +84,3 @@ The practical is organized as a guided 2 h 30 session, during which every partic
 | 2:25–2:30 | Wrap-up                            | Discuss interpretation, limitations, and next steps   |
 
 ---
-
-## Reference outputs and fallback material
-
-Reference outputs are provided for all workflow stages.
-
-These files serve two purposes:
-
-1. They allow participants to continue if their own run fails or takes too long.
-2. They provide expected results for comparison and browsing during processing time.
-
-The reference material includes:
-
-- A precomputed synthetic TmrAB dataset.
-- A completed MDSPACE project.
-- Post-processing results.
-- Example visualizations with the full Python code.

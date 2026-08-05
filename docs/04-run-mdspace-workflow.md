@@ -17,7 +17,7 @@ The complete workflow contains seven main steps: six preparation steps followed 
 3. Rigidly register the starting structure into the reconstructed volume.
 4. Generate or import the molecular topology.
 5. Compute normal modes.
-6. Minimize the molecular system.
+6. Relax the molecular system.
 7. Run the MDSPACE analysis.
 
 <video width="800" height="600" controls autoplay muted loop playsinline>
@@ -41,15 +41,21 @@ To start a new workflow, use File < New. Workflows can be reloaded using File < 
 
 ### Goal
 
-The PDB file provides the molecular structure that will be used as the starting model. The XMD file describes the synthetic cryo-EM particle dataset. It contains the information needed to locate the particle images and read the associated shift and orientation metadata.
+The PDB file provides the molecular structure that will be used as the starting model. The XMD file describes the synthetic cryo-EM/ET particle dataset. It contains the information needed to locate the particle images or subtomograms and read the associated shift and orientation metadata.
 
 ### In this practical
 
-We use the `6RAH.pdb` starting conformation as input and the generated `data_stack/particles.xmd` file from the synthetic dataset as the image input.
+We use the `6RAH.pdb` starting conformation as input. Select the particle metadata corresponding to the practical variant:
+
+=== "Single-particle EM"
+
+    Use `data_stack/particles.xmd` from the synthetic dataset.
+
+=== "Tomography ET"
+
+    Use `data_volumes/subtomograms.xmd` from the synthetic dataset.
 
 After creating a new workflow window, import the PDB and XMD files. Check that both inputs are correctly listed in the project and that the particle dataset can be previewed. A successful load should unlock the next step tab in the workflow window.
-
-Because this practical uses single-particle EM images, importing the particle metadata automatically selects `IMAGES` in the MDSPACE `EM Fit Choice` parameter. For ET/tomogram metadata, the interface selects `VOLUMES` instead. The choice should therefore not need to be changed manually for this practical.
 
 ---
 
@@ -59,11 +65,17 @@ Because this practical uses single-particle EM images, importing the particle me
 
 This step reconstructs a 3D density volume from the synthetic particle images. The reconstructed volume gives a first 3D representation of the image dataset.
 
-This volume is primarily used to align the initial molecular structure with the particle dataset frame of reference.
+This reconstructed volume is primarily used to align the initial molecular structure with the particle dataset frame of reference.
 
 ### In this practical
 
-We reconstruct a volume from the synthetic dataset. The volume must be reconstructed in the same unit as the PDB structure (Ångströms). Enter the pixel size used during dataset generation (2 Å/pixel), then click Start Step.
+=== "Single-particle EM"
+
+    Reconstruct a volume from the 2D particle images. The reconstruction must use the same sampling as the PDB structure (2 Å/pixel). Enter the pixel size used during dataset generation, then click Start Step.
+
+=== "Tomography ET"
+
+    Compute a subtomogram average from the generated subtomograms. Select 10 subtomograms for the average; this is sufficient for the simplified practical and keeps the reconstruction fast. Use the same sampling as the PDB structure (2 Å/pixel), then click Start Step. The generated tilt range is -90° to +90°, avoiding a missing-wedge complication in this practical.
 
 After reconstruction, visually inspect the volume. The purpose of this step is to obtain a reasonable density for rigid registration, not a perfect high-resolution reconstruction.
 
@@ -119,39 +131,50 @@ Because the synthetic dataset was itself generated using normal modes, **we do n
 
 ---
 
-## 6. Minimize the system
+## 6. Relax the system
 
 ### Goal
 
-The input structure may contain local strain, unfavorable contacts, or small inconsistencies from the original PDB file. Minimization relaxes the structure before the MDSPACE run.
+The input structure may contain local strain, unfavorable contacts, or small inconsistencies from the original PDB file. The relaxation step improves the structure before the MDSPACE run.
 
 This step prepares a stable molecular system for the later simulation.
 
 ### In this practical
 
-We minimize the registered C-alpha `6RAH` structure. After minimization, the structure should remain close to the registered input model while improving its local geometry.
+We relax the registered C-alpha `6RAH` structure. After relaxation, the structure should remain close to the registered input model while improving its local geometry.
 
-A small structural adjustment is expected. A large, unexpected displacement may indicate a problem with the input structure, topology, or minimization settings.
+A small structural adjustment is expected. A large, unexpected displacement may indicate a problem with the input structure, topology, or relaxation settings.
 
 ---
 
-## Principle of the MDSPACE method
+## Principles of the fitting methods
 
-MDSPACE, for **M**olecular **D**ynamics simulation for **S**ingle **P**article **A**nalysis of **C**ontinuous **C**onformational h**E**terogeneity, is an iterative method designed to extract continuous conformational landscapes from cryo-EM single-particle images.
+=== "Single-particle EM"
 
-For each particle image, MDSPACE starts from the same initial atomic structure and performs 3D-to-2D flexible fitting. During this fitting, the molecular dynamics simulation is guided by a 2D image-based biasing potential, which compares the experimental particle image with a simulated projection of the current atomic model.
+    MDSPACE, for **M**olecular **D**ynamics simulation for **S**ingle **P**article **A**nalysis of **C**ontinuous **C**onformational h**E**terogeneity, is an iterative method designed to extract continuous conformational landscapes from cryo-EM single-particle images.
 
-After each MDSPACE iteration, the fitted structures obtained from the particle images form an ensemble of conformations. This ensemble is rigidly aligned and analyzed by principal component analysis. The dominant principal component directions are then used to guide the next round of MD-based fitting. This makes the fitting more robust, especially for particle views where the conformational change is weak, ambiguous, or difficult to observe in projection.
+    For each particle image, MDSPACE starts from the same initial atomic structure and performs 3D-to-2D flexible fitting. The molecular dynamics simulation is guided by a 2D image-based biasing potential that compares the experimental particle image with a simulated projection of the current atomic model.
 
-MDSPACE also refines the initial rigid-body alignment of the particles over the iterations. Therefore, the workflow progressively improves both the molecular conformations and the particle orientation and translation parameters.
+    After each iteration, the fitted structures form an ensemble of conformations. This ensemble is rigidly aligned and analyzed by principal component analysis. The dominant principal-component directions guide the next round of MD-based fitting, making the fitting more robust when conformational changes are weak or ambiguous in projection.
 
-![Flowchart of the MDSPACE method](assets/mdspace_paper.jpg)
+    MDSPACE also refines the initial rigid-body alignment of the particles over the iterations, progressively improving both the molecular conformations and the particle orientation and translation parameters.
 
-/// caption
-Fig. 2. Flowchart of the MDSPACE method reproduced from [^3].
-///
+    ![Flowchart of the MDSPACE method](assets/mdspace_paper.jpg)
+
+    /// caption
+    Fig. 2. Flowchart of the MDSPACE method reproduced from [^3].
+    ///
+
+=== "Tomography ET"
+
+    MDTOMO applies the same molecular-dynamics-based flexible-fitting idea to cryo-ET subtomograms, but uses a 3D-to-3D comparison. The current atomic model is converted into a 3D density and compared directly with the experimental subtomogram or reconstructed target volume.
+
+    The 3D volume provides a stronger constraint than a single 2D projection because the full spatial structure is used during fitting. In this practical, the fitting therefore uses one MD iteration without the PCA-guided follow-up iterations used in the EM branch.
+
+    The molecular dynamics simulation remains the common element between the two methods: it progressively deforms the starting atomic structure so that its simulated observation agrees with the experimental data.
 
 [^3]: [Vuillemot, Rémi, et al. "MDSPACE: Extracting continuous conformational landscapes from cryo-EM single particle datasets using 3D-to-2D flexible fitting based on Molecular Dynamics simulation." Journal of Molecular Biology 435.9 (2023): 167951.](https://www.sciencedirect.com/science/article/pii/S0022283623000074)
+
 
 ---
 
@@ -161,25 +184,41 @@ Fig. 2. Flowchart of the MDSPACE method reproduced from [^3].
 
 In MDSPACE, 3D-to-2D flexible fitting uses a biasing potential based on the correlation coefficient between the experimental particle image and a 2D projection simulated from the atomic model. This image-projection agreement guides the MD simulation.
 
-The result is an ensemble of fitted structures, one per particle image, together with refined metadata.
+The result is an ensemble of fitted structures, one per particle image or subtomogram, together with refined metadata when the selected fitting mode uses particle poses.
 
 ### In this practical
 
-We run MDSPACE starting from the registered and minimized `6RAH` C-alpha structure.
+We run MDSPACE starting from the registered and relaxed `6RAH` C-alpha structure.
 
-We use four MDSPACE iterations. The first iteration uses standard MD-based 3D-to-2D flexible fitting **without normal modes. This avoids injecting the normal-mode information that was used to generate the synthetic dataset directly into the recovery process**.
+=== "Single-particle EM"
 
-After the first iteration, MDSPACE analyzes the ensemble of fitted structures using principal component analysis. The following iterations use PCA-based refinement with 3 components. In these iterations, the principal component vectors from the previous ensemble are used to guide MD-based flexible fitting in the next iteration using NMMD. For this, select the MD THEN NMMD option.
+    We use four MDSPACE iterations. The first iteration uses standard MD-based 3D-to-2D flexible fitting **without normal modes. This avoids injecting the normal-mode information that was used to generate the synthetic dataset directly into the recovery process**.
 
-The full list of parameters can mostly be left at their default values except for the following:
+    After the first iteration, MDSPACE analyzes the ensemble of fitted structures using principal component analysis. The following iterations use PCA-based refinement with 3 components. In these iterations, the principal component vectors from the previous ensemble are used to guide MD-based flexible fitting in the next iteration using NMMD. For this, select the MD THEN NMMD option.
 
-- Iterations: 4.
-- Number of Steps: 10 000.
-- Time Step: 0.0035 ps.
-- Simulation Type: MD_THEN_NMMD.
-- Restraint Constant K: 3 500 kcal/mol.
+    Use these settings:
 
-This iterative process incorporates ensemble conformational information into the MD simulation, making the 3D-to-2D fitting of individual particle images more robust to noise and to views where conformational changes are less detectable or ambiguous in the projection plane.
+    - Iterations: 4.
+    - Number of Steps: 10 000.
+    - Time Step: 0.0035 ps.
+    - Simulation Type: MD_THEN_NMMD.
+    - Restraint Constant K: 5 000 kcal/mol.
+    - MD Fit Choice: `IMAGES`.
+
+=== "Tomography ET"
+
+    We use four MDSPACE iterations. The 3D volume-fitting path is better constrained than the EM projection-fitting path, so the main structural recovery occurs early: by iteration 1, about half of the fitted structures are already close to the ground truth, and by iteration 2 most structures are close.
+
+    Use the same MD simulation settings as the EM variant, but use the stronger volume-fitting restraint shown below.
+
+    - Iterations: 4.
+    - Number of Steps: 10 000.
+    - Time Step: 0.0035 ps.
+    - Simulation Type: MD_THEN_NMMD.
+    - Restraint Constant K: 5 000 kcal/mol.
+    - MD Fit Choice: `VOLUMES`.
+
+For EM, the later iterations incorporate ensemble conformational information into the MD simulation, making the 3D-to-2D fitting of individual particle images more robust to noise and to views where conformational changes are less detectable or ambiguous in the projection plane. The ET variant uses the stronger 3D volume constraint, so its recovery is already substantially improved by iteration 1 and most structures are close to the ground truth by iteration 2.
 
 ### While MDSPACE is running
 

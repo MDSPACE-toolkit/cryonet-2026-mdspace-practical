@@ -6,7 +6,6 @@ At the end of this section, you should have:
 
 - MDSPACE Desktop open and ready to use.
 - Access to the workshop data folder.
-- Access to the reference outputs, in case they are needed later.
 
 ---
 
@@ -132,29 +131,13 @@ The main resources are:
 
 | Resource          | Purpose                                                                                                     |
 | ----------------- | ----------------------------------------------------------------------------------------------------------- |
-| Data              | Input structures used to generate the synthetic cryo-EM-like dataset and to initialize the MDSPACE workflow |
-| Reference dataset | Precomputed dataset of 500 images                                                                           |
-| Reference outputs | Precomputed MDSPACE results used for comparison and as a fallback if a live run fails or takes too long     |
+| Data              | Input structures used to generate the synthetic cryo-EM/ET-like dataset and to initialize the workflow     |
 
 ---
 
-## Reference material
-
-Reference material is provided so that all participants can continue the practical even if a live run fails or takes longer than expected.
-
-The reference material can be downloaded [here](https://gallois.cc/assets/cryonet/cryonet-2026.tar.gz).
-
-It includes:
-
-- a precomputed synthetic dataset;
-- a completed MDSPACE analysis;
-- post-processing Python code.
+## Input structures
 
 The structures used in the practical can also be downloaded from the RCSB PDB:
 
 - [6RAF](https://gallois.cc/assets/6RAF.pdb)
 - [6RAH](https://files.rcsb.org/download/6RAH.pdb)
-
-The completed MDSPACE analysis can be opened by dragging the corresponding analysis folder into the MDSPACE Desktop interface.
-
-If a live run fails or takes longer than expected, use the provided reference outputs to continue the practical. Open the relevant reference analysis by dragging its folder into MDSPACE Desktop, then follow the remaining steps using the reference analysis as you would use your own results.

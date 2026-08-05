@@ -17,7 +17,7 @@ This practical uses the current standalone C++ implementation of MDSPACE. Develo
 
 The current version already supports the main steps required for this practical:
 
-- Generation of synthetic cryo-EM projection images from a known conformational ensemble.
+- Generation of synthetic cryo-EM/ET particles from a known conformational ensemble.
 - Initialization of an MDSPACE project from a starting atomic structure.
 - Iterative flexible fitting using molecular dynamics.
 - Storage of recovered structures and metadata in HDF5 archives.
