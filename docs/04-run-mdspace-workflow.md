@@ -49,6 +49,8 @@ We use the `6RAH.pdb` starting conformation as input and the generated `data_sta
 
 After creating a new workflow window, import the PDB and XMD files. Check that both inputs are correctly listed in the project and that the particle dataset can be previewed. A successful load should unlock the next step tab in the workflow window.
 
+Because this practical uses single-particle EM images, importing the particle metadata automatically selects `IMAGES` in the MDSPACE `EM Fit Choice` parameter. For ET/tomogram metadata, the interface selects `VOLUMES` instead. The choice should therefore not need to be changed manually for this practical.
+
 ---
 
 ## 2. Reconstruct a volume from the XMD dataset

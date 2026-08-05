@@ -90,7 +90,7 @@ It is organized as follows:
 | /frames/raw             | Generated molecular coordinates (Å) before projection rotation and shift. If deformation was enabled, these coordinates include the deformation. |
 | /frames/rotated         | Same coordinates (Å) after applying the projection rotation and shift used to generate the particle image.                                       |
 | /transforms/euler       | Euler angles (°) and image shifts (pixels) associated with each generated particle.                                                              |
-| /transforms/composed    | Transform matrix associated with the projection pose (translatin in pixels).                                                                     |
+| /transforms/composed    | Transform matrix associated with the projection pose (translation expressed in pixel units).                                                     |
 | /metadata/reference_pdb | Reference PDB stored in the archive as a string.                                                                                                 |
 | /metadata/pixel_size    | Final pixel size of the generated images, in Å/pixel.                                                                                            |
 
@@ -102,7 +102,7 @@ We will later introduce the [mdspace-analysis](https://github.com/MDSPACE-toolki
 
 ## Inspect generated conformations
 
-The `pdbs/` folder contains the generated PDB structures. You can drag and drop PDB files directly into the software to display them and view their deformations. It can be useful to run the software in tiled mode to make side-by-side comparisons easier. Note that these structures are not shifted or rotated and are present only when deformation generation is enabled.
+The `pdbs/` folder contains the generated PDB structures when `HDF5 + PDBs` was selected. You can drag and drop PDB files directly into the software to display them and view their deformations. It can be useful to run the software in tiled mode to make side-by-side comparisons easier. These files contain the deformed, unshifted and unrotated coordinates.
 
 ---
 

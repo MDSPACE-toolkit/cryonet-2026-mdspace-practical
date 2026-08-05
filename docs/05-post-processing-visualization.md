@@ -40,7 +40,7 @@ The analysis will use two sources of structures:
 - The synthetic conformations stored in `generated_data.h5`;
 - The registered structures stored in each MDSPACE iteration folder, for example, `genesis/000/coords.h5`, `genesis/001/coords.h5`, and so on.
 
-The synthetic structures correspond to the conformations used to generate the particle images. They are deformed structures before projection, rotation, and image shifts. The MDSPACE structures will be loaded from the registered frames, as these have already been placed in a common coordinate frame (the image one) that matches the synthetic structure.
+The synthetic structures correspond to the conformations used to generate the particle images. They are deformed structures before projection, rotation, and image shifts. The MDSPACE structures will be loaded from the registered frames because these are the structures aligned by the workflow for comparing the fitted ensemble. Registered and raw generated coordinates should not be assumed to be numerically identical: reconstruction centering and metadata conventions can introduce a rigid-frame difference. Direct structural comparisons must therefore use a common atom selection and a consistent coordinate frame.
 
 Because the `6RAF` and `6RAH` can have different atom orderings and atom counts, we will first compute a paired C-alpha selection between the two archives. This ensures that all structures are compared using the same atoms in the same order.
 
@@ -178,7 +178,7 @@ for iteration, frames in enumerate(mdspace_iterations):
     print(f"Iteration {iteration}: {len(frames)} structures")
 ```
 
-The registered frames are used because they have already been aligned and share the same frame of reference as the generated data structures, making them appropriate for PCA.
+The registered frames are used because they have already been aligned within the MDSPACE workflow, making them appropriate for inspecting the recovered ensemble in a common workflow frame. They should not be compared to raw generated coordinates as if the two files necessarily shared the same origin; use the corresponding pose or rigid-frame correction when a quantitative coordinate comparison is required.
 
 Using `image_index(frame)` to return a dictionary `{image index, structure}` is safer than assuming that frame 0 always corresponds to image 0, because some images may be skipped or dropped during processing if MD simulations fail.
 
@@ -412,7 +412,7 @@ The PCA projection in Figure 8 shows the evolution of the structures recovered b
 ![Evolution of the principal component space across MDSPACE iterations](assets/pca.svg){ width="800" height="600" }
 
 /// caption
-Fig. 8. Evolution of the principal-component space across MDSPACE iterations. The analysis was performed using 10,000 steps with a time step of 0.0035 ns and a restraint constant, (K) of 3,500 kcal/mol.
+Fig. 8. Evolution of the principal-component space across MDSPACE iterations. The analysis was performed using 10,000 steps with a time step of 0.0035 ps and a restraint constant, (K) of 3,500 kcal/mol.
 ///
 
 At iteration 0, the MDSPACE structures are still widely distributed, indicating that the ensemble recovered during the first iteration contains substantial structural variability relative to the generated ground-truth trajectory. Across subsequent iterations, the MDSPACE cloud progressively moves closer to the generated conformational region and becomes more compact. This indicates that the iterative fitting procedure reduces the discrepancy between the starting model and the synthetic dataset.

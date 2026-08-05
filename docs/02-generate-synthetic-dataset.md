@@ -105,10 +105,11 @@ The final synthetic dataset, therefore, contains images closer to realistic cryo
 Fig. 4. Dataset generation using MDSPACE Desktop.
 ///
 
-1. Download the input [`6RAF`.pdb](https://files.rcsb.org/download/`6RAF`.pdb) file.
+1. Download the input [`6RAF.pdb`](https://files.rcsb.org/download/6RAF.pdb) file.
 2. Open the data generation module in MDSPACE using Tools > Data Generator. A new data generator window is created in the interface.
 3. In the Parameter dock, specify a data folder (e.g., ‘generated_dataset’) as the output directory where the generated dataset will be stored.
-4. Select `6RAF`.pdb as the input PDB file.
+   The other generator fields remain disabled until an output directory has been selected.
+4. Select `6RAF.pdb` as the input PDB file.
 5. In order to optimize processing time for this practical while still producing meaningful results, we suggest this set of parameters:
      - Image number: 50.
      - Sampling: 2 Å/pixel.
@@ -116,6 +117,11 @@ Fig. 4. Dataset generation using MDSPACE Desktop.
      - Resize: 1.
      - Snr: 0.1.
      - Modes: 7, 8.
+     - Parallel threads: leave the default value.
+
+Leave `Sigma shift` and `Sigma angle` at zero for this practical. These optional parameters add Gaussian noise to the particle metadata: shift noise is in pixels and angle noise is isotropic and specified in degrees.
+
+If individual ground-truth PDB files are required, select `HDF5 + PDBs` in the ground-truth output option. Otherwise, the HDF5 archive is sufficient for the analysis below.
 
 These values are chosen to balance computational efficiency with scientific value. A moderate number of images keeps processing time short but provides enough data for analysis. We create a square image of 128 pixels by 128 pixels, sampling at 2 Å/pixel with a target signal-to-noise ratio of 0.1 using the first 2 non-trivial normal modes for deformation.
 
@@ -130,7 +136,7 @@ Then start the dataset generation by clicking Start Step.
 At the end of this step, MDSPACE should produce a synthetic dataset containing:
 
 - An output folder containing particle images, displayed in the UI alongside their metadata.
-- An output folder containing the original PDBs used for the projection.
+- Optionally, an output folder containing the PDBs used for the projection when `HDF5 + PDBs` was selected.
 - An HDF5 archive containing all ground-truth information.
 
 Before continuing, make sure the generated dataset is visible in the UI and that no errors were reported during generation. If you encounter any errors, check the Logs dock for details. Try restarting the generation step if possible. If issues persist, use the provided reference outputs to proceed with the practical.

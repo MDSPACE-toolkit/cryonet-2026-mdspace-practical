@@ -98,7 +98,7 @@ For an x86_64 system, start MDSPACE Desktop with:
 
 For an aarch64 / ARM64 system, use the corresponding aarch64 bundle:
 
-`./MdSpace-Desktop-bundle-aarch64.run`
+`./MdSpace-bundle-aarch64.run`
 
 If the command fails, check that you are in the correct directory and that the file is executable.
 
