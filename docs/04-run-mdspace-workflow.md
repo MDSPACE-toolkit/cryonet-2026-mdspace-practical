@@ -35,7 +35,7 @@ Fig. 1. Complete analysis workflow using MDSPACE Desktop.
 
 ## 0. Create a new workflow
 
-To start a new workflow, use File < New. Workflows can be reloaded using File < Load.
+To start a new workflow, use File < New. MDSPACE asks for an **Analysis Name** below the configured output folder. Enter an unused, meaningful name, for example `mdspace-practical`, and remember it: it is the name of the analysis directory used later in the Python section. Workflows can be reloaded using File < Load by selecting the `workflow.mdspace` file inside that directory.
 
 ## 1. Import the PDB and XMD files
 
@@ -57,6 +57,8 @@ We use the `6RAH.pdb` starting conformation as input. Select the particle metada
 
 After creating a new workflow window, import the PDB and XMD files. Check that both inputs are correctly listed in the project and that the particle dataset can be previewed. A successful load should unlock the next step tab in the workflow window.
 
+Leave **Invert imported shifts** disabled. The generated XMD files already use the convention expected by MDSPACE. Changing this setting rewrites the working metadata and invalidates Averaging and all later workflow steps, which must then be run again.
+
 ---
 
 ## 2. Reconstruct a volume from the XMD dataset
@@ -71,7 +73,7 @@ This reconstructed volume is primarily used to align the initial molecular struc
 
 === "Single-particle EM"
 
-    Reconstruct a volume from the 2D particle images. The reconstruction must use the same sampling as the PDB structure (2 Å/pixel). Enter the pixel size used during dataset generation, then click Start Step.
+    Reconstruct a volume from the 2D particle images. The reconstruction must use the same sampling as the PDB structure (2 Å/pixel). Leave **CTF correction** disabled: it is an optional Wiener-filter preprocessing operation and is not part of this practical. Enter the pixel size used during dataset generation, then click Start Step.
 
 === "Tomography ET"
 
@@ -144,6 +146,10 @@ This step prepares a stable molecular system for the later simulation.
 We relax the registered C-alpha `6RAH` structure. After relaxation, the structure should remain close to the registered input model while improving its local geometry.
 
 A small structural adjustment is expected. A large, unexpected displacement may indicate a problem with the input structure, topology, or relaxation settings.
+
+Use the **3D View** to watch the relaxation animation. The structure should stay compact and recognizable, with no separated chains or strongly stretched regions. In the **Plot** view, select `POTENTIAL_ENE`, `RMSG`, and `MAXG`. All three should show an overall decrease toward a stable range. The exact values depend on the system and force field, so there is no universal numerical threshold.
+
+Do not continue if the animation shows an unbounded displacement or if the plots show non-finite values, a large late rise, or erratic changes without settling. Recheck the input structure, topology, and rigid registration before repeating the step.
 
 ---
 

@@ -25,7 +25,17 @@ Once the MDSPACE run has completed, first inspect the results directly in the so
 
 Open the General tab and check that the MD jobs finished correctly. MDSPACE Desktop can display all molecular dynamics simulation outputs, averaged across all simulations, including the image correlation coefficient (RESTR_CVS001) and other useful quantities.
 
-MDSPACE Desktop can display quick PCA and UMAP projections of the recovered structures. At this stage, these plots are mainly used as diagnostic views: they help check whether the results look reasonable, whether some structures behave as outliers, and whether the analysis parameters are appropriate. In the Explorator tab, clicking on the map can select a structure and display the deformation during the simulation, the associated image, and the data for this given simulation. Selecting several points can reconstruct a volume and see the averaged MD simulation data.
+Use the plot selector to assess whether the fitting simulations were stable:
+
+- `TEMPERATURE` should remain around the configured target after the initial transient.
+- `TOTAL_ENE` and `POTENTIAL_ENE` should remain finite and bounded. They do not need to decrease because the image or volume restraint drives the fitting simulation.
+- `RESTR_CVS001` reports the agreement between the fitted structure and its target. An overall improvement supports successful fitting, but it is not sufficient by itself to establish a reliable result.
+
+Then select several individual points in **Explorator** and inspect their **Simulation**, **PDB**, and **Trajectory** panels. This checks that an aggregate plot has not hidden unstable outliers. Warning signs include persistent extreme temperature excursions, abrupt or non-finite plot values, runaway energies, broken structures, or clearly abnormal trajectories.
+
+MDSPACE Desktop can display quick PCA and UMAP projections of the recovered structures. At this stage, these plots are mainly used as diagnostic views: they help check whether the results look reasonable, whether some structures behave as outliers, and whether the analysis parameters are appropriate. In the **Explorator** tab, choose an iteration, PCA or UMAP, and two distinct components. Clicking one point displays its simulation, fitted PDB, associated data, and trajectory when available. Selecting several points reconstructs their average data. The binning control is available from 2 to 1,024 bins per axis.
+
+To animate a path through conformational space, hold **Shift** and drag across at least two points in the Explorator map, then release the mouse button. MDSPACE draws the selected path and loads the corresponding fitted PDBs in order in the **Trajectory** panel, where they play as an animation. A normal click or a rectangular selection clears the drawn path. This animation follows the selected map points; it is distinct from the per-simulation DCD trajectory available after selecting one point when coordinate output was enabled.
 
 This software-based inspection is useful for a first look, but we will continue the analysis in Python to compare the recovered structures with the synthetic ground truth.
 
@@ -75,17 +85,24 @@ from mdspace_analysis.geometry import align_coordinates, rmsd
 
 ## Set the input path
 
-Set the path to the generated synthetic dataset and to the MDSPACE project folder:
+Set the parent output folder, the generation name, and the analysis name that you chose in MDSPACE:
 
 ```python
-# Path to the generated synthetic dataset.
-generated_h5 = Path("/home/guest/Public/out/generated_data.h5")
+# Parent directory selected for data generation and analyses.
+output_root = Path("/home/guest/Public")
 
-# Path to the MDSPACE project directory.
-project_dir = Path("/home/guest/Public/0eaf7db35391a5d2/")
+# Keep "out" if you accepted the default Data Generation Name.
+generation_name = "out"
+
+# Replace with the Analysis Name entered when creating the workflow.
+analysis_name = "mdspace-practical"
+
+# Paths used by this notebook.
+generated_h5 = output_root / generation_name / "generated_data.h5"
+project_dir = output_root / analysis_name
 ```
 
-Adapt these paths to match the folder names used during the practical.
+Adapt these values to match the folder names used during the practical. Both names must refer to direct children of `output_root`.
 
 Then define the HDF5 archive produced at each MDSPACE iteration:
 

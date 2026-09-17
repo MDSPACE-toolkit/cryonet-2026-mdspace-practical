@@ -129,7 +129,7 @@ Fig. 4. Dataset generation using MDSPACE Desktop.
 
 Download the input [`6RAF.pdb`](https://files.rcsb.org/download/6RAF.pdb) file, then open the data generation module in MDSPACE using Tools > Data Generator. A new data generator window is created in the interface.
 
-In the Parameter dock, first select a data folder (for example, `generated_dataset`) as the output directory. The other generator fields remain disabled until an output directory has been selected. Select `6RAF.pdb` as the input PDB file.
+In the Parameter dock, first select a parent data folder (for example, `~/Public`) as the output directory. MDSPACE then asks for a **Data Generation Name** below that folder. Keep the default name, `out`, for this practical. The generated dataset will therefore be stored in `~/Public/out/`; use this folder in the following sections. The other generator fields remain disabled until an output directory has been selected. Select `6RAF.pdb` as the input PDB file.
 
 The following settings are shared by both practical variants:
 
@@ -142,6 +142,8 @@ The following settings are shared by both practical variants:
 - Sigma angle: 0°.
 
 The sigma parameters are optional metadata-noise controls. Shift noise is specified in pixels and angle noise is isotropic and specified in degrees. Keeping both at zero makes the ground-truth comparison easier.
+
+The generator can also vary CTF defocus across particles using a distribution. This better represents experimental data, but is outside the scope of this controlled recovery experiment: keep the CTF parameters unchanged for the practical.
 
 === "Single-particle EM"
 

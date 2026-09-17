@@ -28,7 +28,7 @@ Fig. 5. Dataset inspection using MDSPACE Desktop.
 In MDSPACE Desktop, the dataset will open automatically once generation is complete. To reopen a dataset later, you have two options:
 
 - Drag and drop the entire dataset folder into the MDSPACE main window.
-- Alternatively, open the data generator tool from the main menu (under Tools > Data Generator), then click ‘Open Folder’ and navigate to your dataset folder or `generator_params.txt` file.
+- Alternatively, open the data generator tool from the main menu (under Tools > Data Generator), choose **Output → Reload generation: select parameter file**, then select `generator_params.txt` inside the dataset folder. You can also drop either that file or the folder that contains it into the main window.
 
 After loading the dataset, you should be able to inspect the generated particle images in the viewer, displaying them image by image with overlaid metadata, and also plot the distribution of the dataset metadata.
 
@@ -80,6 +80,7 @@ The metadata files describe the simulated particles. Depending on the selected v
 
     - `data_spi/particles_spi.xmd`: individual SPIDER images and metadata.
     - `data_stack/particles.xmd`: final MRCS stack and metadata.
+    - The metadata can include per-particle CTF defocus values. Defocus distributions are available for inspection when a distributed CTF defocus was selected during generation; this practical does not vary defocus.
 
 === "Tomography ET"
 
