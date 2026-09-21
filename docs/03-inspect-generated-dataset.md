@@ -28,7 +28,7 @@ Fig. 5. Dataset inspection using MDSPACE Desktop.
 In MDSPACE Desktop, the dataset will open automatically once generation is complete. To reopen a dataset later, you have two options:
 
 - Drag and drop the entire dataset folder into the MDSPACE main window.
-- Alternatively, open the data generator tool from the main menu (under Tools > Data Generator), choose **Output → Reload generation: select parameter file**, then select `generator_params.txt` inside the dataset folder. You can also drop either that file or the folder that contains it into the main window.
+- Alternatively, open the synthetic-dataset simulator from the main menu (**Tools > Simulate cryo-EM/cryo-ET data**), choose **Open existing synthetic dataset**, then select `generator_params.txt` inside the dataset folder. You can also drop either that file or the folder that contains it into the main window.
 
 After loading the dataset, you should be able to inspect the generated particle images in the viewer, displaying them image by image with overlaid metadata, and also plot the distribution of the dataset metadata.
 
@@ -68,7 +68,7 @@ When browsing the generated images, check the following points:
 - The noise level should be compatible with the selected SNR and microscope-simulation parameters.
 - There should be no obvious empty images, corrupted particles, or images where the particle is mostly outside the box.
 
-> You can restart the generation process at any time by clicking Start Step. To obtain a good dataset, use an iterative approach by starting with a small number of noise-free images (e.g., 5). Then generate images while tuning the sampling and size. Next, set the resize parameter to your final desired output, and try different noise levels until you are satisfied. Finally, select the targeted number of images and generate the full dataset.
+> You can restart the generation process at any time by clicking **Generate dataset**. To obtain a good dataset, use an iterative approach by starting with a small number of noise-free images (e.g., 5). Then generate images while tuning the pixel size and box size. Next, set the resize factor to your final desired output, and try different noise levels until you are satisfied. Finally, select the targeted number of images and generate the full dataset.
 
 ---
 

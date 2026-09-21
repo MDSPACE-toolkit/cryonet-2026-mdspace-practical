@@ -91,10 +91,10 @@ Set the parent output folder, the generation name, and the analysis name that yo
 # Parent directory selected for data generation and analyses.
 output_root = Path("/home/guest/Public")
 
-# Keep "out" if you accepted the default Data Generation Name.
+# Keep "out" if you accepted the default Dataset name.
 generation_name = "out"
 
-# Replace with the Analysis Name entered when creating the workflow.
+# Replace with the Project name entered when creating the workflow.
 analysis_name = "mdspace-practical"
 
 # Paths used by this notebook.

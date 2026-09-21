@@ -127,19 +127,19 @@ Fig. 1. Structural displacements associated with modes 7 and 8 of `6RAF`.
 Fig. 4. Dataset generation using MDSPACE Desktop.
 ///
 
-Download the input [`6RAF.pdb`](https://files.rcsb.org/download/6RAF.pdb) file, then open the data generation module in MDSPACE using Tools > Data Generator. A new data generator window is created in the interface.
+Download the input [`6RAF.pdb`](https://files.rcsb.org/download/6RAF.pdb) file, then open the synthetic-dataset simulator in MDSPACE using **Tools > Simulate cryo-EM/cryo-ET data**. A new **Synthetic Dataset Simulator** window is created in the interface.
 
-In the Parameter dock, first select a parent data folder (for example, `~/Public`) as the output directory. MDSPACE then asks for a **Data Generation Name** below that folder. Keep the default name, `out`, for this practical. The generated dataset will therefore be stored in `~/Public/out/`; use this folder in the following sections. The other generator fields remain disabled until an output directory has been selected. Select `6RAF.pdb` as the input PDB file.
+In the Parameter dock, use **Analysis folder** to select a parent data folder (for example, `~/Public`), then choose **Create synthetic dataset** and enter the **Dataset name**. Keep the default name, `out`, for this practical. The generated dataset will therefore be stored in `~/Public/out/`; use this folder in the following sections. The other simulator fields remain disabled until an analysis folder has been selected. Select `6RAF.pdb` as the **Reference structure (PDB)**.
 
 The following settings are shared by both practical variants:
 
-- Sampling: 2 Å/pixel.
-- Size: 128 pixels.
-- Resize: 1.
-- Modes: 7, 8.
-- Parallel threads: leave the default value.
-- Sigma shift: 0.
-- Sigma angle: 0°.
+- Pixel size: 2 Å/pixel.
+- Box size: 128 pixels.
+- Resize factor: 1.
+- Normal-mode indices: 7, 8.
+- Concurrent simulation tasks: leave the default value.
+- Shift noise σ: 0.
+- Angular noise σ: 0°.
 
 The sigma parameters are optional metadata-noise controls. Shift noise is specified in pixels and angle noise is isotropic and specified in degrees. Keeping both at zero makes the ground-truth comparison easier.
 
@@ -147,29 +147,29 @@ The generator can also vary CTF defocus across particles using a distribution. T
 
 === "Single-particle EM"
 
-    Set the output type to `2D particle images`.
+    Set **Dataset type** to `2D particle images`.
 
     Use 500 images for the practical. The dataset is relatively light and is sufficient to illustrate the recovery workflow.
 
-    Set SNR to 0.2. The CTF is applied to each projection and additive noise is then added according to this SNR.
+    Set **Target SNR** to 0.2. The CTF is applied to each projection and additive noise is then added according to this SNR.
 
     If individual ground-truth PDB files are required, select `HDF5 + PDBs` in the ground-truth output option. Otherwise, the HDF5 archive is sufficient for the analysis below.
 
 === "Tomography ET"
 
-    Set the output type to `3D subtomograms`.
+    Set **Dataset type** to `3D subtomograms`.
 
     Use 500 subtomograms. Subtomogram generation is heavier than image generation, but the 3D fitting problem is better constrained for this simplified practical.
 
     Set the tilt series to:
 
-    - Tilt minimum: -90°.
-    - Tilt maximum: +90°.
-    - Tilt step: 2°.
+    - Minimum tilt: -90°.
+    - Maximum tilt: +90°.
+    - Tilt increment: 2°.
 
     This full angular range deliberately avoids a missing-wedge complication in the practical.
 
-    Set SNR to 0.2. The CTF is applied to each tilt projection, additive noise is then added, and the processed projections are reconstructed into subtomograms.
+    Set **Target SNR** to 0.2. The CTF is applied to each tilt projection, additive noise is then added, and the processed projections are reconstructed into subtomograms.
 
     If individual ground-truth PDB files are required, select `HDF5 + PDBs` in the ground-truth output option. Otherwise, the HDF5 archive is sufficient for the analysis below.
 
@@ -177,7 +177,7 @@ These values are chosen to balance computational efficiency with scientific valu
 
 The user can experiment by setting the other parameters as they see fit. The documentation for each parameter is accessible by hovering over the input widgets.
 
-Then start the dataset generation by clicking Start Step.
+Start the dataset generation by clicking **Generate dataset**.
 
 ---
 

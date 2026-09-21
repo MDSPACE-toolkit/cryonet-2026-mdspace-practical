@@ -35,7 +35,7 @@ Fig. 1. Complete analysis workflow using MDSPACE Desktop.
 
 ## 0. Create a new workflow
 
-To start a new workflow, use File < New. MDSPACE asks for an **Analysis Name** below the configured output folder. Enter an unused, meaningful name, for example `mdspace-practical`, and remember it: it is the name of the analysis directory used later in the Python section. Workflows can be reloaded using File < Load by selecting the `workflow.mdspace` file inside that directory.
+To start a new workflow, use **File > New project**. MDSPACE asks for a **Project name** below the configured output folder. Enter an unused, meaningful name, for example `mdspace-practical`, and remember it: it is the name of the project directory used later in the Python section. Projects can be reloaded using **File > Open project** by selecting the `workflow.mdspace` file inside that directory.
 
 ## 1. Import the PDB and XMD files
 
@@ -73,11 +73,11 @@ This reconstructed volume is primarily used to align the initial molecular struc
 
 === "Single-particle EM"
 
-    Reconstruct a volume from the 2D particle images. The reconstruction must use the same sampling as the PDB structure (2 Å/pixel). Leave **CTF correction** disabled: it is an optional Wiener-filter preprocessing operation and is not part of this practical. Enter the pixel size used during dataset generation, then click Start Step.
+    Reconstruct a volume from the 2D particle images. The reconstruction must use the same pixel size as the PDB structure (2 Å/pixel). Leave **CTF correction** disabled: it is an optional Wiener-filter preprocessing operation and is not part of this practical. Enter the pixel size used during dataset generation, then click **Run current stage**.
 
 === "Tomography ET"
 
-    Compute a subtomogram average from the generated subtomograms. Select 10 subtomograms for the average; this is sufficient for the simplified practical and keeps the reconstruction fast. Use the same sampling as the PDB structure (2 Å/pixel), then click Start Step. The generated tilt range is -90° to +90°, avoiding a missing-wedge complication in this practical.
+    Compute a subtomogram average from the generated subtomograms. Select 10 subtomograms for the average; this is sufficient for the simplified practical and keeps the reconstruction fast. Use the same pixel size as the PDB structure (2 Å/pixel), then click **Run current stage**. The generated tilt range is -90° to +90°, avoiding a missing-wedge complication in this practical.
 
 After reconstruction, visually inspect the volume. The purpose of this step is to obtain a reasonable density for rigid registration, not a perfect high-resolution reconstruction.
 
@@ -95,7 +95,7 @@ Rigid registration does not change the internal conformation of the PDB structur
 
 We register the structure onto the reconstructed density. This gives MDSPACE a properly positioned initial model before molecular dynamics and image fitting begin.
 
-Use the left mouse button to approximately align the structure and the volume. If the reconstruction was performed correctly, the two should match in scale. When the two are roughly aligned, click Start Step to perform the fine automatic registration.
+Use the left mouse button to approximately align the structure and the volume. If the reconstruction was performed correctly, the two should match in scale. When the two are roughly aligned, click **Run current stage** to perform the fine automatic registration.
 
 ---
 
@@ -113,7 +113,7 @@ We will use a coarse-grained C-alpha Go model to generate the structure and the 
 
 This simplification is important for MDSPACE because the workflow performs many short MD simulations, one simulation per particle image and per MDSPACE iteration. A C-alpha Go model makes the practical feasible within a reasonable time while still allowing the recovery of meaningful large-scale conformational changes.
 
-Select CAGO as the force field, then click Start Step. The topology will be computed using the external dependency Smog2[^1].
+Select CAGO as the force field, then click **Run current stage**. The topology will be computed using the external dependency Smog2[^1].
 
 [^1]: [Noel, Jeffrey K., et al. "SMOG 2: a versatile software package for generating structure-based models." PLoS Computational Biology 12.3 (2016): e1004794.](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1004794)
 
@@ -127,7 +127,7 @@ Normal modes can be used in the NMMD part of the MDSPACE workflow. In NMMD, norm
 
 ### In this practical
 
-Because the synthetic dataset was itself generated using normal modes, **we do not use the computed normal modes during the recovery workflow**. However, normal modes can still be computed using the external dependency ELNEMO[^2] and visualized for inspection by clicking Start Step.
+Because the synthetic dataset was itself generated using normal modes, **we do not use the computed normal modes during the recovery workflow**. However, normal modes can still be computed using the external dependency ELNEMO[^2] and visualized for inspection by clicking **Run current stage**.
 
 [^2]: [Suhre, K., and Sanejouand, Y. H. (2004). ELNEMO: a normal mode web server for protein movement analysis and the generation of templates for molecular replacement. Nucleic Acids Research 32, W610–W614.](https://pubmed.ncbi.nlm.nih.gov/15215461/)
 
@@ -205,11 +205,11 @@ We run MDSPACE starting from the registered and relaxed `6RAH` C-alpha structure
     Use these settings:
 
     - Iterations: 4.
-    - Number of Steps: 10 000.
-    - Time Step: 0.0035 ps.
-    - Simulation Type: MD_THEN_NMMD.
-    - Restraint Constant K: 5 000 kcal/mol.
-    - MD Fit Choice: `IMAGES`.
+    - MD steps per simulation: 10 000.
+    - Time step: 0.0035 ps.
+    - Simulation type: `MD followed by NMMD`.
+    - Restraint strength: 5 000 kcal/mol/Å².
+    - EM Fit Choice: `IMAGES`.
 
 === "Tomography ET"
 
@@ -218,11 +218,11 @@ We run MDSPACE starting from the registered and relaxed `6RAH` C-alpha structure
     Use the same MD simulation settings as the EM variant, but use the stronger volume-fitting restraint shown below.
 
     - Iterations: 4.
-    - Number of Steps: 10 000.
-    - Time Step: 0.0035 ps.
-    - Simulation Type: MD_THEN_NMMD.
-    - Restraint Constant K: 5 000 kcal/mol.
-    - MD Fit Choice: `VOLUMES`.
+    - MD steps per simulation: 10 000.
+    - Time step: 0.0035 ps.
+    - Simulation type: `MD followed by NMMD`.
+    - Restraint strength: 5 000 kcal/mol/Å².
+    - EM Fit Choice: `VOLUMES`.
 
 For EM, the later iterations incorporate ensemble conformational information into the MD simulation, making the 3D-to-2D fitting of individual particle images more robust to noise and to views where conformational changes are less detectable or ambiguous in the projection plane. The ET variant uses the stronger 3D volume constraint, so its recovery is already substantially improved by iteration 1 and most structures are close to the ground truth by iteration 2.
 
