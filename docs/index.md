@@ -4,6 +4,13 @@ Welcome to the MDSPACE practical session for the CryoNET Advanced Image Processi
 
 In this practical, we will use the MDSPACE Desktop to explore how cryo-EM image analysis and molecular dynamics simulation can be combined to study conformational variability.
 
+!!! tip "Quick access"
+
+    - [MDSPACE Desktop downloads](https://gallois.cc/assets/cryonet.html)
+    - Target structure for synthetic-data generation: [`6RAF.pdb`](https://files.rcsb.org/download/6RAF.pdb)
+    - Starting structure for the MDSPACE workflow: [`6RAH.pdb`](https://files.rcsb.org/download/6RAH.pdb)
+    - [MDSPACE analysis package](https://github.com/MDSPACE-toolkit/mdspace-analysis)
+
 The session is built around a controlled TmrAB (simplified) recovery experiment. Select the variant corresponding to the data type being analyzed:
 
 === "Single-particle EM"
