@@ -35,7 +35,7 @@ Fig. 1. Complete analysis workflow using MDSPACE Desktop.
 
 ## 0. Create a new workflow
 
-To start a new workflow, use **File > New project**. MDSPACE asks for a **Project name** below the configured output folder. Enter an unused, meaningful name, for example `mdspace-practical`, and remember it: it is the name of the project directory used later in the Python section. Projects can be reloaded using **File > Open project** by selecting the `workflow.mdspace` file inside that directory.
+To start a new workflow, use **File > New project**. In the **Create directory** dialog, select the **Parent folder** and enter an unused, meaningful **Directory name**, for example `mdspace-practical`. Remember this name: it identifies the project directory used later in the Python section. Projects can be reloaded using **File > Open project** by selecting the `workflow.mdspace` file inside that directory.
 
 ## 1. Import the PDB and XMD files
 
@@ -73,7 +73,7 @@ This reconstructed volume is primarily used to align the initial molecular struc
 
 === "Single-particle EM"
 
-    Reconstruct a volume from the 2D particle images. The reconstruction must use the same pixel size as the PDB structure (2 Å/pixel). Leave **CTF correction** disabled: it is an optional Wiener-filter preprocessing operation and is not part of this practical. Enter the pixel size used during dataset generation, then click **Run current stage**.
+    Reconstruct a volume from the 2D particle images. The reconstruction must use the same pixel size as the PDB structure (2 Å/pixel). Under **CTF Correction**, leave **Apply correction** unchecked: it is an optional Wiener-filter preprocessing operation and is not part of this practical. Enter the pixel size used during dataset generation, then click **Run current stage**.
 
 === "Tomography ET"
 
@@ -202,27 +202,45 @@ We run MDSPACE starting from the registered and relaxed `6RAH` C-alpha structure
 
     After the first iteration, MDSPACE analyzes the ensemble of fitted structures using principal component analysis. The following iterations use PCA-based refinement with 3 components. In these iterations, the principal component vectors from the previous ensemble are used to guide MD-based flexible fitting in the next iteration using NMMD. For this, select the MD THEN NMMD option.
 
-    Use these settings:
+    Use these settings in the corresponding parameter groups:
 
-    - Iterations: 4.
-    - MD steps per simulation: 10 000.
-    - Time step: 0.0035 ps.
-    - Simulation type: `MD followed by NMMD`.
-    - Restraint strength: 5 000 kcal/mol/Å².
-    - EM Fit Choice: `IMAGES`.
+    - **MDSPACE setup**:
+        - **Iterations:** 4.
+        - **Simulation limit by iteration:** `all`.
+    - **MD Simulation**:
+        - **Simulation type:** `MD followed by NMMD`.
+        - **Time step:** 0.0035 ps.
+        - **MD steps per simulation:** 10 000.
+    - **Normal-mode dynamics**:
+        - **PCA number:** 3.
+    - **EM fitting**:
+        - **Restraint Constant K:** 5 000 kcal/mol/Å².
+        - **EM Fit Choice:** `IMAGES`.
+    - **Output**:
+        - **Output format:** `HDF5`.
 
 === "Tomography ET"
 
     We use four MDSPACE iterations. The 3D volume-fitting path is better constrained than the EM projection-fitting path, so the main structural recovery occurs early: by iteration 1, about half of the fitted structures are already close to the ground truth, and by iteration 2 most structures are close.
 
-    Use the same MD simulation settings as the EM variant, but use the stronger volume-fitting restraint shown below.
+    Use the same numerical MD settings as the EM variant. The 3D volume target supplies the stronger fitting constraint:
 
-    - Iterations: 4.
-    - MD steps per simulation: 10 000.
-    - Time step: 0.0035 ps.
-    - Simulation type: `MD followed by NMMD`.
-    - Restraint strength: 5 000 kcal/mol/Å².
-    - EM Fit Choice: `VOLUMES`.
+    - **MDTomo setup**:
+        - **Iterations:** 4.
+        - **Simulation limit by iteration:** `all`.
+    - **MD Simulation**:
+        - **Simulation type:** `MD followed by NMMD`.
+        - **Time step:** 0.0035 ps.
+        - **MD steps per simulation:** 10 000.
+    - **Normal-mode dynamics**:
+        - **PCA number:** 3.
+    - **ET fitting**:
+        - **Restraint Constant K:** 5 000 kcal/mol/Å².
+        - **EM Fit Choice:** `VOLUMES`.
+    - **Output**:
+        - **Output format:** `HDF5`.
+
+MDSPACE sets **EM Fit Choice** automatically from the imported particle metadata: `IMAGES` for image data and `VOLUMES` for volume data. The selector is an expert control. To inspect or override it, click **Additional parameters…** in the fitting panel or enable **View > Expert mode**.
 
 For EM, the later iterations incorporate ensemble conformational information into the MD simulation, making the 3D-to-2D fitting of individual particle images more robust to noise and to views where conformational changes are less detectable or ambiguous in the projection plane. The ET variant uses the stronger 3D volume constraint, so its recovery is already substantially improved by iteration 1 and most structures are close to the ground truth by iteration 2.
 

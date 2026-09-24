@@ -127,23 +127,25 @@ Fig. 1. Structural displacements associated with modes 7 and 8 of `6RAF`.
 Fig. 4. Dataset generation using MDSPACE Desktop.
 ///
 
-Download the input [`6RAF.pdb`](https://files.rcsb.org/download/6RAF.pdb) file, then open the synthetic-dataset simulator in MDSPACE using **Tools > Simulate cryo-EM/cryo-ET data**. A new **Synthetic Dataset Simulator** window is created in the interface.
+Download the input [`6RAF.pdb`](https://files.rcsb.org/download/6RAF.pdb) file, then open the synthetic-dataset simulator in MDSPACE using **Tools > Simulate cryo-EM/cryo-ET data**. A new **Synthetic Cryo-EM/Cryo-ET Dataset Simulator** window is created in the interface.
 
-In the Parameter dock, use **Analysis folder** to select a parent data folder (for example, `~/Public`), then choose **Create synthetic dataset** and enter the **Dataset name**. Keep the default name, `out`, for this practical. The generated dataset will therefore be stored in `~/Public/out/`; use this folder in the following sections. The other simulator fields remain disabled until an analysis folder has been selected. Select `6RAF.pdb` as the **Reference structure (PDB)**.
+In the **Parameters** dock, open **Analysis folder** and choose **Create synthetic dataset**. In the **Create directory** dialog, select a **Parent folder** (for example, `~/Public`) and enter the **Directory name**. Keep the default directory name, `out`, for this practical. The generated dataset will therefore be stored in `~/Public/out/`; use this folder in the following sections. The other simulator fields remain disabled until an analysis folder has been selected. Select `6RAF.pdb` as the **Reference structure (PDB)**.
 
 The following settings are shared by both practical variants:
 
-- Pixel size: 2 Å/pixel.
-- Box size: 128 pixels.
-- Resize factor: 1.
-- Normal-mode indices: 7, 8.
-- Concurrent simulation tasks: leave the default value.
-- Shift noise σ: 0.
-- Angular noise σ: 0°.
+- **Pixel size:** 2 Å/pixel.
+- **Box size:** 128 pixels.
+- **Resize factor:** 1.
+- **Deformation:** `Yes`.
+- **Normal-mode indices:** 7, 8.
+- **Concurrent simulation tasks:** leave the default value.
+- **CTF simulation:** `Yes`.
+- **Defocus:** `Uniform`, with both displayed values set to -5 000 Å.
+- **Noise simulation:** `Yes`.
+- **Metadata noise:** `No`.
+- **Ground-truth output:** `HDF5`.
 
-The sigma parameters are optional metadata-noise controls. Shift noise is specified in pixels and angle noise is isotropic and specified in degrees. Keeping both at zero makes the ground-truth comparison easier.
-
-The generator can also vary CTF defocus across particles using a distribution. This better represents experimental data, but is outside the scope of this controlled recovery experiment: keep the CTF parameters unchanged for the practical.
+The **Metadata noise** switch controls optional errors in the generated shift and angle metadata. Keep it disabled for this controlled recovery experiment. Likewise, fixing both bounds of the uniform defocus distribution at -5 000 Å prevents particle-to-particle defocus variation. Distributed defocus is useful for more realistic simulations but is outside the scope of this practical.
 
 === "Single-particle EM"
 
@@ -153,7 +155,7 @@ The generator can also vary CTF defocus across particles using a distribution. T
 
     Set **Target SNR** to 0.2. The CTF is applied to each projection and additive noise is then added according to this SNR.
 
-    If individual ground-truth PDB files are required, select `HDF5 + PDBs` in the ground-truth output option. Otherwise, the HDF5 archive is sufficient for the analysis below.
+    If individual ground-truth PDB files are required, change **Ground-truth output** to `HDF5 + PDBs`. Otherwise, the default HDF5 archive is sufficient for the analysis below.
 
 === "Tomography ET"
 
@@ -163,15 +165,16 @@ The generator can also vary CTF defocus across particles using a distribution. T
 
     Set the tilt series to:
 
-    - Minimum tilt: -90°.
-    - Maximum tilt: +90°.
-    - Tilt increment: 2°.
+    - **Minimum tilt:** -90°.
+    - **Maximum tilt:** +90°.
+    - **Tilt increment:** 2°.
+    - **Tilt-series output:** `Discard tilt series`.
 
     This full angular range deliberately avoids a missing-wedge complication in the practical.
 
     Set **Target SNR** to 0.2. The CTF is applied to each tilt projection, additive noise is then added, and the processed projections are reconstructed into subtomograms.
 
-    If individual ground-truth PDB files are required, select `HDF5 + PDBs` in the ground-truth output option. Otherwise, the HDF5 archive is sufficient for the analysis below.
+    If individual ground-truth PDB files are required, change **Ground-truth output** to `HDF5 + PDBs`. Otherwise, the default HDF5 archive is sufficient for the analysis below. Keeping **Tilt-series output** set to `Discard tilt series` avoids retaining the large set of intermediate tilt images.
 
 These values are chosen to balance computational efficiency with scientific value. The EM dataset contains 500 square images of 128 pixels at 2 Å/pixel. The ET dataset contains 500 subtomograms with the same box size and sampling, and uses a complete -90° to +90° tilt range. Both variants use the first two non-trivial normal modes for deformation.
 
@@ -187,6 +190,7 @@ At the end of this step, MDSPACE should produce a synthetic dataset containing:
 
 - An output folder containing particle images or subtomograms, displayed in the UI alongside their metadata.
 - Optionally, an output folder containing the PDBs used for the projection when `HDF5 + PDBs` was selected.
+- Optionally, a `tilt_series/` folder for the ET variant when **Save tilt series** was selected.
 - An HDF5 archive containing all ground-truth information.
 
-Before continuing, make sure the generated dataset is visible in the UI and that no errors were reported during generation. If you encounter any errors, check the Logs dock for details and restart the generation step if necessary.
+Before continuing, make sure the generated dataset is visible in the UI and that no errors were reported during generation. If you encounter an error, check **Activity** in the **Logs** dock for its summary and **Raw Logs** for the generated log files, then restart the generation step if necessary.

@@ -85,24 +85,24 @@ from mdspace_analysis.geometry import align_coordinates, rmsd
 
 ## Set the input path
 
-Set the parent output folder, the generation name, and the analysis name that you chose in MDSPACE:
+Set the parent output folder and the two directory names that you chose in MDSPACE:
 
 ```python
 # Parent directory selected for data generation and analyses.
 output_root = Path("/home/guest/Public")
 
-# Keep "out" if you accepted the default Dataset name.
-generation_name = "out"
+# Keep "out" if you accepted the default Directory name for the dataset.
+dataset_directory_name = "out"
 
-# Replace with the Project name entered when creating the workflow.
-analysis_name = "mdspace-practical"
+# Replace with the Directory name entered when creating the project.
+project_directory_name = "mdspace-practical"
 
 # Paths used by this notebook.
-generated_h5 = output_root / generation_name / "generated_data.h5"
-project_dir = output_root / analysis_name
+generated_h5 = output_root / dataset_directory_name / "generated_data.h5"
+project_dir = output_root / project_directory_name
 ```
 
-Adapt these values to match the folder names used during the practical. Both names must refer to direct children of `output_root`.
+Adapt these values to match the folder names used during the practical. Both directory names must refer to direct children of `output_root`.
 
 Then define the HDF5 archive produced at each MDSPACE iteration:
 

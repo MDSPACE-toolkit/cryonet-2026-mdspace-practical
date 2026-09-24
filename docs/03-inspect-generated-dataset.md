@@ -30,7 +30,7 @@ In MDSPACE Desktop, the dataset will open automatically once generation is compl
 - Drag and drop the entire dataset folder into the MDSPACE main window.
 - Alternatively, open the synthetic-dataset simulator from the main menu (**Tools > Simulate cryo-EM/cryo-ET data**), choose **Open existing synthetic dataset**, then select `generator_params.txt` inside the dataset folder. You can also drop either that file or the folder that contains it into the main window.
 
-After loading the dataset, you should be able to inspect the generated particle images in the viewer, displaying them image by image with overlaid metadata, and also plot the distribution of the dataset metadata.
+After loading the dataset, use the **Generated data** result tab to inspect the particle images or subtomograms record by record, display their metadata, and plot metadata distributions. For standalone inspection, an XMD, STAR, or CS metadata file can also be dropped into the main window or opened using **Tools > Cryo-EM data viewer**.
 
 ---
 
@@ -42,7 +42,7 @@ A typical generated folder may look like this:
 
 | File or folder        | Meaning                                                                                 |
 | --------------------- | --------------------------------------------------------------------------------------- |
-| reference_centered.pdb| The reference structure translated so that its center of mass is at the origin.         |                               |
+| reference_centered.pdb| The reference structure translated so that its center of mass is at the origin          |
 | generator_params.txt  | Parameters used for dataset generation                                                  |
 | ctf.param             | CTF parameters used for microscope simulation                                           |
 | generate_data.log     | Main generation log                                                                     |
@@ -53,6 +53,7 @@ A typical generated folder may look like this:
 | data_spi/             | Individual SPIDER images and associated metadata for the EM variant                     |
 | data_stack/           | Final MRCS image stack and metadata for the EM variant                                  |
 | data_volumes/         | Final subtomogram stack and metadata for the ET variant                                |
+| tilt_series/          | Optional retained tilt images and selection files when **Save tilt series** was selected |
 | generated_data.h5     | The coordinate-level ground truth                                                       |
 
 ---
@@ -123,4 +124,6 @@ The `pdbs/` folder contains the generated PDB structures when `HDF5 + PDBs` was 
 
 If normal mode deformation was enabled, the output folder also contains NMA-related files.
 
-These files contain the normal mode vectors used to deform the structure. They can be inspected by dragging the reference PDB structure into the software, then dragging and dropping the mode file (`vec.n`) inside the newly created viewer window.
+These files contain the normal-mode vectors used to deform the structure. After generation or reload, inspect them directly in the simulator's **Normal modes** result tab.
+
+For standalone inspection, open **Tools > Normal mode viewer** and select `reference_centered.pdb` together with a mode file such as `modes/vec.7`. The viewer loads the other `vec.N` files from the same directory. You can also drop the PDB and the `modes/` directory together into the main window or into an open Normal mode viewer.
