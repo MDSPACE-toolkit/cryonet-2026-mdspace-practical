@@ -2,6 +2,7 @@ site_name: MDSPACE Practical Session - CryoNET 2026
 site_description: Workshop material and step-by-step instructions for the MDSPACE practical session at CryoNET 2026.
 site_author: Benjamin Gallois
 site_url: https://https://mdspace-toolkit.github.io/cryonet-2026-mdspace-practical/
+copyright: "Practical build: 2026-10-01 · checked with MDSPACE d556e2eb"
 
 repo_name: https://mdspace-toolkit/cryonet-2026-mdspace-practical
 repo_url: https://github.com/MDSPACE-toolkit/cryonet-2026-mdspace-practical

@@ -16,9 +16,9 @@ The complete workflow contains seven main steps: six preparation steps followed 
 2. Reconstruct a 3D volume from the particles.
 3. Rigidly register the starting structure into the reconstructed volume.
 4. Generate or import the molecular topology.
-5. Compute normal modes.
-6. Relax the molecular system.
-7. Run the MDSPACE analysis.
+5. Relax the molecular system.
+6. Compute normal modes.
+7. Run the MDSPACE or MDTOMO analysis.
 
 <video width="800" height="600" controls autoplay muted loop playsinline>
   <source src="../assets/run.webm" type="video/webm">
@@ -33,9 +33,11 @@ Fig. 1. Complete analysis workflow using MDSPACE Desktop.
 
 ---
 
-## 0. Create a new workflow
+## 0. Create and import a new workflow
 
-To start a new workflow, use **File > New project**. In the **Create directory** dialog, select the **Parent folder** and enter an unused, meaningful **Directory name**, for example `mdspace-practical`. Remember this name: it identifies the project directory used later in the Python section. Projects can be reloaded using **File > Open project** by selecting the `workflow.mdspace` file inside that directory.
+To start a new workflow, use **File > New project**. In the wizard, select the **Parent folder**, enter an unused, meaningful **Directory name** (for example, `mdspace-practical`), then select the starting PDB and the metadata file specified below. Use the default **Link to source files** storage mode and enter a **Pixel size** of 2 Å/pixel. Remember the directory name: it identifies the project directory used later in the Python section.
+
+The wizard chooses MDSPACE for 2D particle images and MDTOMO for 3D subtomograms automatically. Projects can be reloaded using **File > Open project** by selecting the `workflow.mdspace` file inside that directory. As a shortcut, drag that file—or a folder containing it—onto the main MDSPACE window. Workflow inputs themselves are selected by the wizard; they cannot be added later by dropping them onto the Inputs tab.
 
 ## 1. Import the PDB and XMD files
 
@@ -55,9 +57,9 @@ We use the `6RAH.pdb` starting conformation as input. Select the particle metada
 
     Use `data_volumes/subtomograms.xmd` from the synthetic dataset.
 
-After creating a new workflow window, import the PDB and XMD files. Check that both inputs are correctly listed in the project and that the particle dataset can be previewed. A successful load should unlock the next step tab in the workflow window.
+Check the PDB and XMD inputs shown by the wizard, then complete it. The Inputs stage should show the imported data and allow the particle dataset to be previewed. A successful import unlocks the next workflow tab.
 
-Leave **Invert imported shifts** disabled. The generated XMD files already use the convention expected by MDSPACE. Changing this setting rewrites the working metadata and invalidates Averaging and all later workflow steps, which must then be run again.
+Leave **Invert imported shifts** disabled. The generated XMD files already use the convention expected by MDSPACE. Changing this setting rewrites the working metadata and invalidates reconstruction or averaging and all later workflow steps, which must then be run again.
 
 ---
 
@@ -119,27 +121,11 @@ Select CAGO as the force field, then click **Run current stage**. The topology w
 
 ---
 
-## 5. Compute normal modes
-
-### Goal
-
-Normal modes can be used in the NMMD part of the MDSPACE workflow. In NMMD, normal-mode directions are combined with MD-based atomic displacements to encourage collective motions and accelerate large-scale conformational changes.
-
-### In this practical
-
-Because the synthetic dataset was itself generated using normal modes, **we do not use the computed normal modes during the recovery workflow**. However, normal modes can still be computed using the external dependency ELNEMO[^2] and visualized for inspection by clicking **Run current stage**.
-
-[^2]: [Suhre, K., and Sanejouand, Y. H. (2004). ELNEMO: a normal mode web server for protein movement analysis and the generation of templates for molecular replacement. Nucleic Acids Research 32, W610–W614.](https://pubmed.ncbi.nlm.nih.gov/15215461/)
-
----
-
-## 6. Relax the system
+## 5. Relax the system
 
 ### Goal
 
 The input structure may contain local strain, unfavorable contacts, or small inconsistencies from the original PDB file. The relaxation step improves the structure before the MDSPACE run.
-
-This step prepares a stable molecular system for the later simulation.
 
 ### In this practical
 
@@ -150,6 +136,20 @@ A small structural adjustment is expected. A large, unexpected displacement may 
 Use the **3D View** to watch the relaxation animation. The structure should stay compact and recognizable, with no separated chains or strongly stretched regions. In the **Plot** view, select `POTENTIAL_ENE`, `RMSG`, and `MAXG`. All three should show an overall decrease toward a stable range. The exact values depend on the system and force field, so there is no universal numerical threshold.
 
 Do not continue if the animation shows an unbounded displacement or if the plots show non-finite values, a large late rise, or erratic changes without settling. Recheck the input structure, topology, and rigid registration before repeating the step.
+
+---
+
+## 6. Compute normal modes
+
+### Goal
+
+Normal modes can be used in the NMMD part of the MDSPACE workflow.[^2] In NMMD, normal-mode directions are combined with MD-based atomic displacements to encourage collective motions and accelerate large-scale conformational changes.
+
+### In this practical
+
+Because the synthetic dataset was itself generated using normal modes, **we do not use the initially computed normal modes during the recovery workflow**. Leave **NMA method** set to `RTB2`, click **Run current stage**, and inspect the resulting modes if desired. Later MDSPACE iterations use PCA directions from the preceding fitted ensemble rather than these initial modes.
+
+[^2]: [Suhre, K., and Sanejouand, Y. H. (2004). ELNEMO: a normal mode web server for protein movement analysis and the generation of templates for molecular replacement. Nucleic Acids Research 32, W610–W614.](https://pubmed.ncbi.nlm.nih.gov/15215461/)
 
 ---
 
@@ -175,7 +175,7 @@ Do not continue if the animation shows an unbounded displacement or if the plots
 
     MDTOMO applies the same molecular-dynamics-based flexible-fitting idea to cryo-ET subtomograms, but uses a 3D-to-3D comparison. The current atomic model is converted into a 3D density and compared directly with the experimental subtomogram or reconstructed target volume.
 
-    The 3D volume provides a stronger constraint than a single 2D projection because the full spatial structure is used during fitting. In this practical, the fitting therefore uses one MD iteration without the PCA-guided follow-up iterations used in the EM branch.
+    The 3D volume provides a stronger constraint than a single 2D projection because the full spatial structure is used during fitting. Recovery therefore tends to occur earlier than in the EM branch. This practical still runs four iterations so that the fitted ensemble can be compared over the same sequence of MD and PCA-guided refinement steps.
 
     The molecular dynamics simulation remains the common element between the two methods: it progressively deforms the starting atomic structure so that its simulated observation agrees with the experimental data.
 
@@ -184,7 +184,7 @@ Do not continue if the animation shows an unbounded displacement or if the plots
 
 ---
 
-## 7. Run the MDSPACE analysis
+## 7. Run the MDSPACE or MDTOMO analysis
 
 ### Goal
 
@@ -194,13 +194,13 @@ The result is an ensemble of fitted structures, one per particle image or subtom
 
 ### In this practical
 
-We run MDSPACE starting from the registered and relaxed `6RAH` C-alpha structure.
+We run MDSPACE or MDTOMO, depending on the imported data, starting from the registered and relaxed `6RAH` C-alpha structure.
 
 === "Single-particle EM"
 
     We use four MDSPACE iterations. The first iteration uses standard MD-based 3D-to-2D flexible fitting **without normal modes. This avoids injecting the normal-mode information that was used to generate the synthetic dataset directly into the recovery process**.
 
-    After the first iteration, MDSPACE analyzes the ensemble of fitted structures using principal component analysis. The following iterations use PCA-based refinement with 3 components. In these iterations, the principal component vectors from the previous ensemble are used to guide MD-based flexible fitting in the next iteration using NMMD. For this, select the MD THEN NMMD option.
+    After the first iteration, MDSPACE analyzes the ensemble of fitted structures using principal component analysis. The following iterations use PCA-based refinement with 3 components. In these iterations, the principal component vectors from the previous ensemble are used to guide MD-based flexible fitting in the next iteration using NMMD. For this, select `MD followed by NMMD`.
 
     Use these settings in the corresponding parameter groups:
 

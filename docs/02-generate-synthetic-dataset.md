@@ -127,7 +127,7 @@ Fig. 1. Structural displacements associated with modes 7 and 8 of `6RAF`.
 Fig. 4. Dataset generation using MDSPACE Desktop.
 ///
 
-Download the input [`6RAF.pdb`](https://files.rcsb.org/download/6RAF.pdb) file, then open the synthetic-dataset simulator in MDSPACE using **Tools > Simulate cryo-EM/cryo-ET data**. A new **Synthetic Cryo-EM/Cryo-ET Dataset Simulator** window is created in the interface.
+Download the input [`6RAF.pdb`](https://files.rcsb.org/download/6RAF.pdb) file, then open the synthetic-dataset simulator in MDSPACE using **Tools > Simulate cryo-EM/cryo-ET data**. A new **Synthetic Cryo-EM/Cryo-ET Dataset Simulator** window is created in the interface. As a shortcut, drag `6RAF.pdb` onto that open simulator window to fill **Reference structure (PDB)**; this does not start generation.
 
 In the **Parameters** dock, open **Analysis folder** and choose **Create synthetic dataset**. In the **Create directory** dialog, select a **Parent folder** (for example, `~/Public`) and enter the **Directory name**. Keep the default directory name, `out`, for this practical. The generated dataset will therefore be stored in `~/Public/out/`; use this folder in the following sections. The other simulator fields remain disabled until an analysis folder has been selected. Select `6RAF.pdb` as the **Reference structure (PDB)**.
 
@@ -135,17 +135,35 @@ The following settings are shared by both practical variants:
 
 - **Pixel size:** 2 Å/pixel.
 - **Box size:** 128 pixels.
-- **Resize factor:** 1.
+- **Random seed:** leave `Random`. A fixed positive value can be used to repeat pose, deformation, and CTF sampling, although acquisition noise remains stochastic.
 - **Deformation:** `Yes`.
+- **NMA method:** `RTB2`.
 - **Normal-mode indices:** 7, 8.
+- **RTB block size:** 10 residues.
+- **Elastic-network cutoff:** 8 Å.
+- **Mode relationship:** `Linear`.
+- **Deformation amplitude:** `Uniform`, from -100 Å to +100 Å.
+- **X shift:** `Uniform`, from -5 to +5 pixels.
+- **Y shift:** `Uniform`, from -5 to +5 pixels.
+- **Rot angle:** `Uniform`, from 0° to 360°.
+- **Tilt angle:** `Uniform`, from 0° to 180°.
+- **Psi angle:** `Uniform`, from 0° to 360°.
 - **Concurrent simulation tasks:** leave the default value.
 - **CTF simulation:** `Yes`.
-- **Defocus:** `Uniform`, with both displayed values set to -5 000 Å.
+- **Acceleration voltage:** 300 kV.
+- **Spherical aberration:** 2.7 mm.
+- **Defocus:** `Constant`, set to -5 000 Å.
+- **Astigmatism:** `Constant`, set to 0 Å.
+- **Astigmatism angle:** `Constant`, set to 0°.
+- **Amplitude contrast (Q₀):** 0.07.
 - **Noise simulation:** `Yes`.
+- **Phase flip output:** `Yes`. This is the simulator default; it writes phase-flipped images after CTF simulation, matching the uncorrected reconstruction path used below.
 - **Metadata noise:** `No`.
-- **Ground-truth output:** `HDF5`.
+- **Ground-truth output:** `HDF5`. This is sufficient for the practical and avoids writing individual PDB files for every generated particle or subtomogram.
 
-The **Metadata noise** switch controls optional errors in the generated shift and angle metadata. Keep it disabled for this controlled recovery experiment. Likewise, fixing both bounds of the uniform defocus distribution at -5 000 Å prevents particle-to-particle defocus variation. Distributed defocus is useful for more realistic simulations but is outside the scope of this practical.
+The **Metadata noise** switch controls optional errors in the generated shift and angle metadata. Keep it disabled for this controlled recovery experiment. A constant defocus of -5 000 Å prevents particle-to-particle defocus variation. Uniform, normal, and stepped-Gaussian defocus distributions are useful for more realistic simulations but are outside the scope of this practical.
+
+With **Mode relationship** set to `Linear`, one sampled deformation amplitude is applied to both modes 7 and 8. This produces the controlled one-dimensional conformational path used in the later comparison; `Random` would sample the two mode amplitudes independently.
 
 === "Single-particle EM"
 
@@ -155,7 +173,7 @@ The **Metadata noise** switch controls optional errors in the generated shift an
 
     Set **Target SNR** to 0.2. The CTF is applied to each projection and additive noise is then added according to this SNR.
 
-    If individual ground-truth PDB files are required, change **Ground-truth output** to `HDF5 + PDBs`. Otherwise, the default HDF5 archive is sufficient for the analysis below.
+    If individual ground-truth PDB files are required, change **Ground-truth output** to `HDF5 + PDBs`. Otherwise, the HDF5 archive is sufficient for the analysis below.
 
 === "Tomography ET"
 
@@ -169,18 +187,19 @@ The **Metadata noise** switch controls optional errors in the generated shift an
     - **Maximum tilt:** +90°.
     - **Tilt increment:** 2°.
     - **Tilt-series output:** `Discard tilt series`.
+    - **Z shift:** `Uniform`, with both bounds set to 0 pixels.
 
     This full angular range deliberately avoids a missing-wedge complication in the practical.
 
     Set **Target SNR** to 0.2. The CTF is applied to each tilt projection, additive noise is then added, and the processed projections are reconstructed into subtomograms.
 
-    If individual ground-truth PDB files are required, change **Ground-truth output** to `HDF5 + PDBs`. Otherwise, the default HDF5 archive is sufficient for the analysis below. Keeping **Tilt-series output** set to `Discard tilt series` avoids retaining the large set of intermediate tilt images.
+    If individual ground-truth PDB files are required, change **Ground-truth output** to `HDF5 + PDBs`. Otherwise, the HDF5 archive is sufficient for the analysis below. Keeping **Tilt-series output** set to `Discard tilt series` avoids retaining the large set of intermediate tilt images.
 
 These values are chosen to balance computational efficiency with scientific value. The EM dataset contains 500 square images of 128 pixels at 2 Å/pixel. The ET dataset contains 500 subtomograms with the same box size and sampling, and uses a complete -90° to +90° tilt range. Both variants use the first two non-trivial normal modes for deformation.
 
 The user can experiment by setting the other parameters as they see fit. The documentation for each parameter is accessible by hovering over the input widgets.
 
-Start the dataset generation by clicking **Generate dataset**.
+Start the dataset generation by clicking **Run current stage**.
 
 ---
 
@@ -189,8 +208,8 @@ Start the dataset generation by clicking **Generate dataset**.
 At the end of this step, MDSPACE should produce a synthetic dataset containing:
 
 - An output folder containing particle images or subtomograms, displayed in the UI alongside their metadata.
-- Optionally, an output folder containing the PDBs used for the projection when `HDF5 + PDBs` was selected.
-- Optionally, a `tilt_series/` folder for the ET variant when **Save tilt series** was selected.
+- Optionally, a `ground_truth_pdb/` folder containing raw and rotated PDB frames when `HDF5 + PDBs` was selected.
+- Optionally, a `tilt_series/` folder for the ET variant when **Tilt-series output** was set to `Save tilt series`.
 - An HDF5 archive containing all ground-truth information.
 
 Before continuing, make sure the generated dataset is visible in the UI and that no errors were reported during generation. If you encounter an error, check **Activity** in the **Logs** dock for its summary and **Raw Logs** for the generated log files, then restart the generation step if necessary.

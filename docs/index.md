@@ -4,6 +4,14 @@ Welcome to the MDSPACE practical session for the CryoNET Advanced Image Processi
 
 In this practical, we will use the MDSPACE Desktop to explore how cryo-EM image analysis and molecular dynamics simulation can be combined to study conformational variability.
 
+!!! info "Build compatibility"
+
+    **Practical build date:** `2026-10-01`
+
+    **MDSPACE version checked:** `1.0.0-337-gd556e2eb` (commit `d556e2eb`, dated `2026-10-01`)
+
+    In MDSPACE Desktop, open **Help > About** and compare the displayed version with this stamp. If the versions differ substantially, some labels, defaults, or available controls may also differ from the instructions.
+
 !!! tip "Quick access"
 
     - [MDSPACE Desktop downloads](https://gallois.cc/assets/cryonet.html)

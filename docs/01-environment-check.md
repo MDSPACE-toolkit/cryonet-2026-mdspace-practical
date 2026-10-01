@@ -115,6 +115,10 @@ If MDSPACE Desktop still does not start, notify the instructor.
 
 After opening the software, check that the main window appears correctly and that the graphical interface is responsive.
 
+### Drag-and-drop shortcuts
+
+Where a file-opening action supports it, you may drag a local file or folder from the file manager onto the MDSPACE main window instead of using a file picker. For example, a project (`workflow.mdspace` or its folder), simulator dataset (`generator_params.txt` or its folder), PDB, volume, or XMD/STAR/CS metadata file opens the matching workflow, simulator, or viewer. Dropping files only opens or loads them: it never starts a simulation or reconstruction automatically.
+
 MDSPACE Desktop follows a Multiple Document Interface (MDI) design. Several internal windows can be opened simultaneously and arranged according to the user’s preferences.
 
 The layout can be adjusted using the View menu. The font size can be increased using the Accessibility menu.

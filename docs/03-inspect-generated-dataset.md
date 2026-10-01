@@ -30,7 +30,7 @@ In MDSPACE Desktop, the dataset will open automatically once generation is compl
 - Drag and drop the entire dataset folder into the MDSPACE main window.
 - Alternatively, open the synthetic-dataset simulator from the main menu (**Tools > Simulate cryo-EM/cryo-ET data**), choose **Open existing synthetic dataset**, then select `generator_params.txt` inside the dataset folder. You can also drop either that file or the folder that contains it into the main window.
 
-After loading the dataset, use the **Generated data** result tab to inspect the particle images or subtomograms record by record, display their metadata, and plot metadata distributions. For standalone inspection, an XMD, STAR, or CS metadata file can also be dropped into the main window or opened using **Tools > Cryo-EM data viewer**.
+After loading the dataset, use the **Generated data** result tab to inspect the particle images or subtomograms record by record, display their metadata, and plot metadata distributions. For standalone inspection, an XMD, STAR, or CS metadata file can also be dropped into the main window or opened using **Tools > Viewers > Cryo-EM data viewer**.
 
 ---
 
@@ -49,11 +49,11 @@ A typical generated folder may look like this:
 | nma.log               | Normal mode analysis log                                                                |
 | eigenvalues.txt       | Eigenvalues associated with the computed normal modes                                   |
 | modes/                | Normal mode vectors used for deformation                                                |
-| pdbs/                 | Deformed PDB structures generated for individual particles (but not shifted or rotated) |
+| ground_truth_pdb/     | Optional deformed PDB structures: `raw_<index>.pdb` is centered and deformed; `rotated_<index>.pdb` also has the generated pose |
 | data_spi/             | Individual SPIDER images and associated metadata for the EM variant                     |
 | data_stack/           | Final MRCS image stack and metadata for the EM variant                                  |
 | data_volumes/         | Final subtomogram stack and metadata for the ET variant                                |
-| tilt_series/          | Optional retained tilt images and selection files when **Save tilt series** was selected |
+| tilt_series/          | Optional retained tilt images and selection files when **Tilt-series output** was set to `Save tilt series` |
 | generated_data.h5     | The coordinate-level ground truth                                                       |
 
 ---
@@ -63,13 +63,13 @@ A typical generated folder may look like this:
 When browsing the generated images, check the following points:
 
 - Particles should be clearly visible, not clipped by the image boundaries, and surrounded by about 25% of their diameter by an empty margin. If the particle is too close to the border, adjust size and sampling.
-- Record the final pixel size for later MDSPACE processing. If a resize factor is applied, the effective pixel size is final pixel `size = sampling / resize`.
+- Record the pixel size for later MDSPACE processing. For this practical it remains 2 Å/pixel.
 - Particles should appear with different orientations if rotation sampling is enabled.
 - Particles should be reasonably centered. Small shifts are expected if shift simulation is enabled, but particles should remain well inside the image box.
 - The noise level should be compatible with the selected SNR and microscope-simulation parameters.
 - There should be no obvious empty images, corrupted particles, or images where the particle is mostly outside the box.
 
-> You can restart the generation process at any time by clicking **Generate dataset**. To obtain a good dataset, use an iterative approach by starting with a small number of noise-free images (e.g., 5). Then generate images while tuning the pixel size and box size. Next, set the resize factor to your final desired output, and try different noise levels until you are satisfied. Finally, select the targeted number of images and generate the full dataset.
+> You can restart the generation process at any time by clicking **Run current stage**. To obtain a good dataset, use an iterative approach: start with a small number of noise-free images (for example, 5), tune the pixel size and box size, then try different noise levels. Finally, select the target number of images and generate the full dataset.
 
 ---
 
@@ -116,7 +116,7 @@ We will later introduce the [mdspace-analysis](https://github.com/MDSPACE-toolki
 
 ## Inspect generated conformations
 
-The `pdbs/` folder contains the generated PDB structures when `HDF5 + PDBs` was selected. You can drag and drop PDB files directly into the software to display them and view their deformations. It can be useful to run the software in tiled mode to make side-by-side comparisons easier. These files contain the deformed, unshifted and unrotated coordinates.
+The `ground_truth_pdb/` folder contains generated PDB structures when `HDF5 + PDBs` was selected. You can drag and drop a `raw_<index>.pdb` or `rotated_<index>.pdb` file directly onto the main window to open a Structure & map viewer. The raw file contains centered, deformed coordinates; the rotated file also has the generated pose. It can be useful to run the software in tiled mode to make side-by-side comparisons easier.
 
 ---
 
@@ -126,4 +126,4 @@ If normal mode deformation was enabled, the output folder also contains NMA-rela
 
 These files contain the normal-mode vectors used to deform the structure. After generation or reload, inspect them directly in the simulator's **Normal modes** result tab.
 
-For standalone inspection, open **Tools > Normal mode viewer** and select `reference_centered.pdb` together with a mode file such as `modes/vec.7`. The viewer loads the other `vec.N` files from the same directory. You can also drop the PDB and the `modes/` directory together into the main window or into an open Normal mode viewer.
+For standalone inspection, open **Tools > Viewers > Normal mode viewer** and select `reference_centered.pdb` together with a mode file such as `modes/vec.7`. The viewer loads the other `vec.N` files from the same directory. You can also drop the PDB and the `modes/` directory together into the main window or into an open Normal mode viewer.
